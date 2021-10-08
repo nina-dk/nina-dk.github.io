@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>antonina kallinteri</title>
+  
+  
+  <link href="http://example.com/atom.xml" rel="self"/>
+  
+  <link href="http://example.com/"/>
+  <updated>2021-10-06T18:20:07.761Z</updated>
+  <id>http://example.com/</id>
+  
+  <author>
+    <name>Antonina Kallinteri</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Let&#39;s X-plore JavaScript&#39;s Object Creation Patterns!</title>
+    <link href="http://example.com/2021/09/29/x-plore-js-object-creation-patterns/"/>
+    <id>http://example.com/2021/09/29/x-plore-js-object-creation-patterns/</id>
+    <published>2021-09-29T17:34:23.000Z</published>
+    <updated>2021-10-06T18:20:07.761Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;In an attempt to fully absorb the various object creation patterns in JavaScript, in this article, we’re going to explore them through an example.&lt;/p&gt;
+&lt;img src=&quot;https://images.unsplash.com/photo-1612036782617-472725567302?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1170&amp;q=80&quot; class=&quot;&quot;&gt;</summary>
+    
+    
+    
+    <category term="JavaScript" scheme="http://example.com/categories/JavaScript/"/>
+    
+    <category term="Object" scheme="http://example.com/categories/JavaScript/Object/"/>
+    
+    
+    <category term="OOP" scheme="http://example.com/tags/OOP/"/>
+    
+    <category term="Object" scheme="http://example.com/tags/Object/"/>
+    
+    <category term="Prototypal Inheritance" scheme="http://example.com/tags/Prototypal-Inheritance/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Why the forEach JavaScript Method Might not Always be the Best Choice</title>
+    <link href="http://example.com/2021/09/29/forEach-method-not-always-best-choice/"/>
+    <id>http://example.com/2021/09/29/forEach-method-not-always-best-choice/</id>
+    <published>2021-09-29T17:16:04.000Z</published>
+    <updated>2021-10-06T18:13:13.618Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;This is a trap I’ve found myself falling into several times.&lt;/p&gt;
+&lt;img src=&quot;https://images.unsplash.com/photo-1506702315536-dd8b83e2dcf9?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1170&amp;q=80&quot; class=&quot;&quot;&gt;</summary>
+    
+    
+    
+    <category term="JavaScript" scheme="http://example.com/categories/JavaScript/"/>
+    
+    <category term="Array" scheme="http://example.com/categories/JavaScript/Array/"/>
+    
+    
+    <category term="forEach" scheme="http://example.com/tags/forEach/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>The Perilous Journey of an HTTP Request</title>
+    <link href="http://example.com/2021/09/27/the-perilous-journey-of-an-HTTP-Request/"/>
+    <id>http://example.com/2021/09/27/the-perilous-journey-of-an-HTTP-Request/</id>
+    <published>2021-09-27T18:34:42.000Z</published>
+    <updated>2021-10-08T09:18:30.137Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;This is the story of a lonely HTTP request sailing across the vast Internet seas.&lt;/p&gt;
+&lt;img src=&quot;https://images.unsplash.com/photo-1534447677768-be436bb09401?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1194&amp;q=80&quot; class=&quot;&quot; title=&quot;Boat sailing in the ocean&quot; alt=&quot;Photo by Johannes Plenio on Unsplash&quot;&gt;
+
+
+&lt;p&gt;It all started when a tired pair of human eyes searched for some peace in cute cat images.&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Networking" scheme="http://example.com/categories/Networking/"/>
+    
+    
+    <category term="HTTP" scheme="http://example.com/tags/HTTP/"/>
+    
+    <category term="TCP" scheme="http://example.com/tags/TCP/"/>
+    
+    <category term="Ethernet" scheme="http://example.com/tags/Ethernet/"/>
+    
+    <category term="TLS" scheme="http://example.com/tags/TLS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://example.com/2021/09/17/hello-world/"/>
+    <id>http://example.com/2021/09/17/hello-world/</id>
+    <published>2021-09-17T18:19:31.578Z</published>
+    <updated>2021-09-17T18:19:31.579Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+</feed>

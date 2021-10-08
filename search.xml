@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>Why the forEach JavaScript Method Might not Always be the Best Choice</title>
+    <url>/2021/09/29/forEach-method-not-always-best-choice/</url>
+    <content><![CDATA[<p>This is a trap I’ve found myself falling into several times.</p>
+<img src="https://images.unsplash.com/photo-1506702315536-dd8b83e2dcf9?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80" class="">
+
+<span id="more"></span>
+
+<p>Although the <code>Array.prototype.forEach()</code> method seems like a good pick when you want to loop over an array of elements in JavaScript, there are several occasions when a simple <code>for</code> loop or another one of the built-in array methods is what you need.</p>
+<p>Let’s create a simple example of a bad use case of the <code>forEach</code> method:</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> array = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line">array.forEach(<span class="function"><span class="params">num</span> =&gt;</span> num += <span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+
+<p><code>forEach</code> accepts a callback function as an argument (<code>num =&gt; num += 1</code>), which in turn has one parameter, <code>num</code>. This parameter will be assigned to the value of the element that’s being iterated over on each iteration of <code>forEach</code>. So, given the array <code>[1, 2, 3]</code>, the numbers <code>1</code>, <code>2</code>, and <code>3</code> will be assigned to the parameter <code>num</code> of the callback on each iteration.</p>
+<p>Now might be a good time to say that in the case of primitive values (such as numbers) JavaScript is “pass-by-value”. This means that when we’re passing the first element of the array, the number <code>1</code> in our example, as an argument to the callback function, what really happens is that a copy of the number <code>1</code> is assigned to the variable <code>num</code>. The element at index 0 of the calling array and the value of the variable <code>num</code> inside the callback function are simply equal; they’re not linked in any way.</p>
+<p>Inside the callback, we’re reassigning the value of <code>num</code> to the result of <code>num + 1</code> (that is we increment its value by <code>1</code>). So, <code>num</code> will now equal <code>2</code> (on the first iteration). However, the values of the elements of the calling array are not going to be affected by this reassignment, because of “pass-by-value” behaviour. The calling array will still contain the elements <code>1</code>, <code>2</code>, and <code>3</code>.</p>
+<p>This is a trap I’ve found myself falling into several times, and by writing it down, I’m attempting to not only share it but also wrap my head around it for good. An experienced developer would know just by looking at this example above that something is going wrong. This example, the way it is right now, has no useful return value (<code>forEach</code> <em>always</em> returns <code>undefined</code>) and no side effects; in other words, it’s doing nothing at all.</p>
+<p>If the goal was to increment every element in the array we could do so by using the <code>Array.prototype.map()</code> method, if we don’t mind having a new array instead of mutating the calling array, or a good old <code>for</code> loop, to mutate the original array, like so:</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; array.length; i++) &#123;</span><br><span class="line"> array[i] += <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Long story short, you cannot change the values of an array’s elements using a <code>forEach</code> loop the way you would with <code>map</code>, for example. If that’s your goal, the simplest way is to go for a <code>for</code> loop. Note, however, that you can mutate an array’s elements if they are objects themselves.</p>
+<p><em>Note:</em> There is, however, a less-common workaround to that issue, using the third parameter of <code>forEach</code> which is assigned to the calling array, like so:</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">array.forEach(<span class="function">(<span class="params">_, index, arr</span>) =&gt;</span> arr[index] += <span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+
+<p>Some other cases when a <code>forEach</code> loop is not appropriate are when you intend to exit the looping mechanism after a condition is met or when you want to mutate the calling array while looping through it. In the first case, <code>forEach</code> wouldn’t work at all since there’s no way to exit it, and in the latter, you might get unexpected results if the mutation affects the length property of the calling array.</p>
+<p>For example:</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> nums = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">6</span>];</span><br><span class="line">nums.forEach(<span class="function">(<span class="params">num, index</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (num % <span class="number">2</span> === <span class="number">1</span>) &#123;</span><br><span class="line">    nums.splice(index, <span class="number">1</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line">nums; <span class="comment">//returns [ 2, 7, 6 ]</span></span><br></pre></td></tr></table></figure>
+
+<p>In the example above, we’re attempting to remove every odd number from the <code>nums</code> array using the <code>Array.prototype.splice()</code> destructive method. However, as we can see from the final return value, <code>nums</code> still contains the odd number <code>7</code>. This happens because while the <code>forEach</code> loop iterates over the array, each element and its corresponding index are passed as arguments to the callback function. When an element is removed, the next element will take up the removed element’s slot and therefore, its index. On the next iteration of <code>forEach</code> the value assigned to <code>index</code> will be incremented as the iteration proceeds with the next element, ignoring the element that was moved back by one slot.</p>
+<p>This is better explained in the flowchart below:</p>
+<img src="/2021/09/29/forEach-method-not-always-best-choice/forEachBug.png" class="">]]></content>
+      <categories>
+        <category>JavaScript</category>
+        <category>Array</category>
+      </categories>
+      <tags>
+        <tag>forEach</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2021/09/17/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>The Perilous Journey of an HTTP Request</title>
+    <url>/2021/09/27/the-perilous-journey-of-an-HTTP-Request/</url>
+    <content><![CDATA[<p>This is the story of a lonely HTTP request sailing across the vast Internet seas.</p>
+<img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1194&q=80" class="" title="Boat sailing in the ocean" alt="Photo by Johannes Plenio on Unsplash">
+
+
+<p>It all started when a tired pair of human eyes searched for some peace in cute cat images.</p>
+<span id="more"></span>
+
+<img src="/2021/09/27/the-perilous-journey-of-an-HTTP-Request/search-url.jpg" class="" title="Google Search for “cute cat images”" alt="Google Search for “cute cat images”">
+
+<p>This was the birth of an <em>HTTP request</em>: a text message comprised of some necessary information structured in the way that the <strong>Hypertext Transfer Protocol (HTTP)</strong> commands. Place of birth: the <em>Application Layer</em>.</p>
+<p>It looked something like this:</p>
+<img src="/2021/09/27/the-perilous-journey-of-an-HTTP-Request/curl-request-cut.png" class="" title="HTTP Request in curl" alt="The HTTP Request">
+
+<p>Line 1 is the <em>request line</em>.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">GET /search?q=cute%20cat%20images HTTP/2</span><br></pre></td></tr></table></figure>
+
+<p>It includes the <em>HTTP Method</em> that will tell the destination host, when it gets there, how it should handle it. This is a <code>GET</code> request: it asks the server to get a resource (the search results page for “cute cat images”) and send them back to the <em>client</em>: our browser.</p>
+<p>It also includes the <em>request-URI</em>, aka the <em>path</em>, that will let the server know which resource it needs to fetch. Our request’s path includes a query string, <code>?q=cute%20cat%20images</code>, which passes some additional information to the server regarding the requested resource.</p>
+<p>Short pause here to discuss the query string — what is this <code>q</code> and why are there some weird characters separating the words we typed in the search box?</p>
+<p><code>q</code> is the name of the input field we filled. We can see that here:</p>
+<img src="/2021/09/27/the-perilous-journey-of-an-HTTP-Request/q-input-field.jpg" class="" title="Google search field name attribute is q" alt="Notice the &#96;name&#96; attribute of the input element">
+
+<p>The “weird” characters, specifically <code>%20</code>, are there because we cannot have spaces in URLs. Therefore we use the <a href="https://www.rapidtables.com/code/text/ascii-table.html">ASCII hex code</a> for a space (the number <code>20</code>) preceded by <code>%</code>, which is simply a reserved character for entering ASCII codes in the URL to encode characters that are not allowed or are not safe to use.</p>
+<p>Close parenthesis.</p>
+<p>Finally, the HTTP version in use is specified: <code>HTTP/2</code>.</p>
+<p>Below the request line is a necessary header that identifies the receiving host, <code>www.google.com</code>. We will not get into the following two headers.</p>
+<p>Are we all set to travel? By no means. The HTTP request has to undergo a transition before it is ready to embark on its dangerous journey.</p>
+<h2 id="Becoming-a-TCP-segment"><a href="#Becoming-a-TCP-segment" class="headerlink" title="Becoming a TCP segment"></a>Becoming a TCP segment</h2><p>It now enters the <em>Transport Layer</em>. The commander of this layer is usually the <strong>Transmission Control Protocol (TCP)</strong>. TCP takes its job very seriously and wants to make sure that every segment sent is received, and that in the right order.</p>
+<p>Let’s take a break here to briefly discuss how TCP implements these features to ensure a reliable connection between client and server is established.</p>
+<p>Firstly, it follows a process known as the <em>TCP three-way handshake</em>. During the “handshake”, the client and server exchange several messages.</p>
+<ol>
+<li>The client-host sends a segment with the <code>SYN</code> flag set.</li>
+<li>The server responds with a segment with <code>SYN</code> — <code>ACK</code> flags.</li>
+<li>The client sends the final segment with an <code>ACK</code> flag.</li>
+</ol>
+<p>Once the handshake is complete, the HTTP request can be safely transmitted.</p>
+<p>Additionally, in order to make sure that the request actually got to its destination, an <em>acknowledgement</em> message is sent back from the server to our computer’s network interface. If no acknowledgement is received, the segment is retransmitted.</p>
+<p>Finally, if a message is too large to be sent in one go, it is broken down into several segments that each have their own <em>sequence number</em> (situated in a header field, as well). This way, when they arrive at their destination, they will be processed in the correct order.</p>
+<p>The HTTP request is encapsulated in a TCP segment. That segment has a header and a data payload (where the HTTP request now lies).</p>
+<img src="/2021/09/27/the-perilous-journey-of-an-HTTP-Request/tcp-segment2.png" class="" title="A TCP segment encapsulating an HTTP request" alt="The TCP Segment (outlined in black) encapsulates the HTTP Request">
+
+<p>So what’s in the header?</p>
+<p>The Transport Layer is responsible for sending the segment from the requesting application (the web browser, in this case) to the correct process in the Google server (where HTTP requests are handled). It does that through the use of <em>ports</em>: integers in the range of 0–65535 that act as identifiers for a specific application or process in a host.</p>
+<p>The header of our TCP segment will contain (among other information) the <em>source port</em> assigned to that application by our OS and the <em>destination port</em>. The default port for HTTP is 80.</p>
+<p>That way, when the segment arrives at Google’s server it will be directed to port 80, where the server listens for HTTP requests.</p>
+<p>But how will it get to Google’s server in the first place?</p>
+<h2 id="Becoming-an-IP-packet"><a href="#Becoming-an-IP-packet" class="headerlink" title="Becoming an IP packet"></a>Becoming an IP packet</h2><p>Onwards, downwards, to the <em>Internet Layer</em>.</p>
+<p>This is where TCP segments are turned into <em>IP packets</em> by the <strong>Internet Protocol (IP)</strong>.</p>
+<p>The Internet Protocol is the one that makes it possible for a packet to travel from your home to a server on the other side of the world.</p>
+<img src="/2021/09/27/the-perilous-journey-of-an-HTTP-Request/ip-packet.png" class="" title="An IP packet encapsulating a TCP segment" alt="The IP Packet (outlined in blue) encapsulates the TCP Segment">
+
+<p>The TCP segment willingly jumps into the packet. IP seals it and writes the return and mailing addresses on it. The sender’s address or <em>source IP address</em> is the IP address of my computer (I’m the one in need of cute cat pictures). The recipient or <em>destination IP address</em> is the IP address of Google’s server: the unique sequence of numbers that identifies that computer on the internet.</p>
+<p>An IP address might look something like this: <code>207.126.144.100</code>, for IPv4, or this: <code>2a02:687:1211:7500:c8cb:bcf9:7acb:a966</code>, for IPv6.</p>
+<p>(<em>Note:</em> IPv4 and IPv6 are versions of the IP protocol, with IPv6 being the latest version that can accommodate approximately 10²⁷ times more IP addresses than IPv4 does).</p>
+<p>All set; on to the next, final layer.</p>
+<h2 id="Becoming-an-Ethernet-frame"><a href="#Becoming-an-Ethernet-frame" class="headerlink" title="Becoming an Ethernet frame"></a>Becoming an Ethernet frame</h2><p>Our request has officially reached its final preparation stage: the <em>Data Link Layer</em>. The <strong>Ethernet</strong> protocol is in charge of this layer.</p>
+<p>Ethernet wraps the IP packet, containing the TCP segment, containing the HTTP Request, into a <em>frame</em>. On the header of the frame are the <em>source</em> and <em>destination MAC addresses</em>. Except, the destination, in this case, is not yet Google’s server, located miles and miles away, but the next <em>node</em> in line. And by node, I’m referring to the closest networked device that the message will be transferred to first — the next “hop” on the way to Google. Right now, it will probably be my router.</p>
+<img src="/2021/09/27/the-perilous-journey-of-an-HTTP-Request/ethernet-frame.png" class="" title="An Ethernet frame encapsulating an IP packet" alt="The Ethernet Frame (outlined in green) encapsulates the IP Packet">
+
+<p>This is what Ethernet does: it’s responsible for getting the frame to the next “hop” in the network. Once it gets there, the destination MAC address will change to point to the next node. It’s much like how real packages travel across the world: each courier (node) processes the package (frame) and dispatches it to the next courier until it reaches its final destination.</p>
+<img src="https://images.unsplash.com/photo-1508416163602-e4eb39645e86?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2074&q=80" class="" title="Light signals" alt="Photo by Daniel Falcao on Unsplash">
+
+<p>What now? Chaos, cables and wires. The frame takes its final form: it becomes a stream of bits travelling as electrical signals (or light signals or radio waves) towards the destination MAC address — the router that will act as a gateway to the outside world.</p>
+<p>In the same manner, an <em>HTTP Response</em> will be prepared at Google’s servers and travel all the way back to my home, my computer, and ultimately, from my browser to my tired eyes.</p>
+<img src="/2021/09/27/the-perilous-journey-of-an-HTTP-Request/cute-cat-images.jpg" class="" title="Search results for cute cat images" alt="The HTTP Response message interpreted as a web page">
+
+<h4 id="Notes"><a href="#Notes" class="headerlink" title="Notes"></a>Notes</h4><ol>
+<li>For the purposes of this article, the <a href="https://en.wikipedia.org/wiki/Internet_protocol_suite">TCP/IP model</a> is used.</li>
+<li>There is more than one protocol that can be used at each layer. For example, at the Transport Layer, <strong>UDP</strong> might be used by some applications in the place of TCP.</li>
+<li>In the case of HTTPS, which is the one actually used by google.com, the HTTP Request is first encrypted by the <strong>TLS</strong> protocol, so that it can be safely transmitted.</li>
+<li>Unfortunately, there’s a <em>lot</em> more going on than what is mentioned in this article.</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Networking</category>
+      </categories>
+      <tags>
+        <tag>HTTP</tag>
+        <tag>TCP</tag>
+        <tag>Ethernet</tag>
+        <tag>TLS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Let&#39;s X-plore JavaScript&#39;s Object Creation Patterns!</title>
+    <url>/2021/09/29/x-plore-js-object-creation-patterns/</url>
+    <content><![CDATA[<p>In an attempt to fully absorb the various object creation patterns in JavaScript, in this article, we’re going to explore them through an example.</p>
+<img src="https://images.unsplash.com/photo-1612036782617-472725567302?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80" class="">
+
+<span id="more"></span>
+<p>Let’s define them, first, though:</p>
+<p><strong>1. Object factories or factory functions pattern</strong><br><strong>2. Constructor/prototype or pseudo-classical object construction pattern</strong><br><strong>3. Objects Linking to Other Objects (OLOO) pattern</strong><br><strong>4. ES6 Classes</strong></p>
+<p>Okay. So we’ll create some of the X-Men using all of the different patterns to see, in practice, how they work, as well as what their differences and similarities are.</p>
+<h2 id="1-Object-factories"><a href="#1-Object-factories" class="headerlink" title="1. Object factories"></a>1. Object factories</h2><p>Object factories (aka factory functions) are perhaps, the simplest object creation pattern. We define a function that returns an object that has the properties and methods that we want our instances to have. If we want to provide some properties with custom values (i.e. have our instances have a unique state), we can achieve that by passing the values as arguments to the function.</p>
+<script src="//gist.github.com/2bbe7820f1b850f3793ee234ef931e75.js?file=factoryFuncXMen.js"></script>
+
+<p>In this example, we create a <code>createXMen</code> factory function that returns an object with two properties and two methods. In the <code>createWolverine</code> and <code>createJean</code> factories, we use the <code>Object.assign</code> method to endow the instances of the factories with the properties and methods that <code>createXMen</code> provides, as well as assign some unique state and functionality to them.</p>
+<p>This way, we can invoke <code>callProfessor</code> and <code>displayPowers</code> on both <code>wolverine</code> and <code>jean</code>. One drawback of this paradigm is that the objects created by all the above factory functions have their own copies of all of the methods (as displayed on line 45).</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Object</span>.getOwnPropertyNames(jean); <span class="comment">// [&#x27;name&#x27;, &#x27;powers&#x27;, &#x27;callProfessor&#x27;, &#x27;displayPowers&#x27;, &#x27;enterPhoenixMode&#x27;]</span></span><br></pre></td></tr></table></figure>
+<p> Now this is just a small example, but imagine having thousands of X-Men objects; it would put a pretty heavy load on system memory.</p>
+<p>Another drawback would be that we can’t determine what types of objects <code>wolverine</code> and <code>jean</code> are (line 46).</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">jean <span class="keyword">instanceof</span> createJean; <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+<p>The <code>instanceof</code> operator doesn’t work with factory functions. Why? Well, according to the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/instanceof">MDN docs</a>: “The <code>instanceof</code> operator tests to see if the prototype property of a constructor appears anywhere in the prototype chain of an object.” Since there’s no inheritance relationship between an object factory and its instances, instanceof is of no use to us here.</p>
+<h2 id="2-Constructor-prototype-pattern"><a href="#2-Constructor-prototype-pattern" class="headerlink" title="2. Constructor/prototype pattern"></a>2. Constructor/prototype pattern</h2><p>Also known as the <em>pseudo-classical object construction pattern</em>, this pattern utilizes constructor functions and their prototype property to create objects of the same type that inherit their behaviour (methods) from the constructor function’s prototype. We can also have constructors inherit from other constructors by reassigning the “child” constructor’s prototype property to reference an object that inherits from the “parent” constructor’s function prototype using <code>Object.create</code>, as seen below (lines 19 and 29):</p>
+<script src="//gist.github.com/eebfbcf4a7650d049a3913eba28a0abe.js?file=constructorsXMen.js"></script>
+
+<p>A lot is going on here, but we’re just going to highlight the most important parts:</p>
+<ol>
+<li>We invoke constructors using the <code>new</code> operator. <code>new</code> implicitly creates and returns a new object, without us having to return anything from the constructor explicitly. The properties that we want to add to this new object are added inside the constructor because <code>new</code> also sets the binding for <code>this</code> in the constructor to the newly created object.<br>In addition to that, <code>new</code> sets the internal <code>[[Prototype]]</code> property of the instances of the constructor to point to the object referenced by the constructor’s prototype property. In plain words, the instances inherit from the constructor function’s prototype. Therefore, we can add properties and methods in <code>Jean.prototype</code>, for example, and all instances of <code>Jean</code> will have access to them. This is why we can invoke <code>enterPhoenixMode</code> on <code>jean</code>, even though the object itself doesn’t define such a method, as seen on line 48.</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.getOwnPropertyNames(jean)); <span class="comment">// [&#x27;name&#x27;, &#x27;powers&#x27;]</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>As mentioned before, we can have subtypes: a constructor that inherits from a parent constructor. In this example, <code>Wolverine.prototype</code> and <code>Jean.prototype</code> inherit from <code>XMen.prototype</code>. Thus, instances of <code>Wolverine</code> and <code>Jean</code> can delegate method calls to their granddaddy, <code>XMen.prototype</code> (lines 38 and 45).</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//`displayPowers` is defined on XMen.prototype...</span></span><br><span class="line">wolverine.displayPowers();</span><br><span class="line"><span class="comment">//Logan has claws</span></span><br><span class="line"><span class="comment">//Logan has superhuman senses</span></span><br><span class="line"><span class="comment">//Logan has healing factor</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//omitted code</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//...as is `callProfessor`</span></span><br><span class="line">jean.callProfessor(); <span class="comment">// Calling Charles...</span></span><br></pre></td></tr></table></figure>
+
+<p>Notice lines 20 and 30? Before reassigning <code>Wolverine.prototype</code> and <code>Jean.prototype</code> to these new objects that inherit from <code>XMen.prototype</code>, they both pointed to another object that owned a <code>constructor</code> property, which pointed back to the constructor function, <code>Wolverine</code> and <code>Jean</code>, respectively.</p>
+<img src="/2021/09/29/x-plore-js-object-creation-patterns/constructorProp.png" class="" title="Constructor property" alt="The constructor property before and after reassigning the function prototype to a new object">
+
+<p>When we reassign <code>Jean.prototype</code> to reference a new object that inherits from <code>XMen.prototype</code> the old object along with its belongings is garbage collected. As a consequence, when we reference <code>constructor</code> on <code>Jean.prototype</code> on line 33 in the picture above, it no longer references the expected function object. In reality, there is no longer a constructor property in the object referenced by <code>Jean.prototype</code>. Therefore, JS looks for it in the object’s prototype, <code>XMen.prototype</code>, which (like any constructor function’s prototype) defines that property. However, <code>XMen.prototype.constructor</code> points to <code>XMen</code>, so that’s what <code>Jean.prototype.constructor</code> also evaluates to (line 34). To fix that, we manually add a <code>constructor</code> property in the new <code>Jean.prototype</code> and have it point to <code>Jean</code>. This way if we later want to find out who created an instance of <code>Jean</code> we can simply access <code>jean.constructor</code> (where <code>jean</code> is an instance of <code>Jean</code>):</p>
+<img src="/2021/09/29/x-plore-js-object-creation-patterns/jeanConstructor.png" class="" title="The constructor of the jean object is Jean" alt="Accessing constructor on jean gives us the constructor function that created it
+">
+
+<h2 id="3-OLOO"><a href="#3-OLOO" class="headerlink" title="3. OLOO"></a>3. OLOO</h2><p>The <em>Objects Linking to Other Objects</em> pattern works in a somewhat different way than the rest of the patterns we’ve seen: it doesn’t use functions; instead, it creates a prototype object from which all objects of a given type will inherit their state and methods. We can differentiate the several instances’ state by using a method usually called <code>init</code>, and passing the values we want as arguments to it. Better explained with an example:</p>
+<script src="//gist.github.com/6fed14f4b8a6b63aee91149f9a55be2f.js?file=OLOOXMen.js"></script>
+
+<p>In this paradigm, <code>XMen</code>, <code>Wolverine</code> and <code>Jean</code> are merely objects themselves. To have their instances inherit from them we leverage the <code>Object.create</code> static method, which creates an empty object and sets its internal <code>[[Prototype]]</code> property to point to the object it receives as an argument. On line 45, we instantiate a new object referenced by <code>jean</code> that inherits properties and methods defined on <code>Jean</code>.</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> jean = <span class="built_in">Object</span>.create(Jean).init();</span><br></pre></td></tr></table></figure>
+
+<p>Okay, and what about <code>.init()</code>? The <code>init</code> method (called this by convention) is necessary to also add <em>state</em> (properties) to our instances. Let’s break down lines 2–6:</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="title">init</span>(<span class="params">name, powers</span>)</span> &#123;</span><br><span class="line">  <span class="built_in">this</span>.name = name;</span><br><span class="line">  <span class="built_in">this</span>.powers = powers;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">this</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>There’s this <code>init</code> method defined on <code>XMen</code>, which takes two arguments, <code>name</code> and <code>powers</code>. In the method, we define two properties also called <code>name</code> and <code>powers</code> on the object referenced by <code>this</code> when we invoke <code>init</code>, and assign them the arguments passed in as values. This method is the “simulation” of the constructor function in the pseudo-classical construction pattern. We invoke <code>init</code> on an instance of <code>XMen</code> and endow it with a personalized state.</p>
+<p>Now, if we need to create a sub-type of <code>XMen</code> like we did before, we can create an object that inherits all the methods from <code>XMen</code>, again using <code>Object.create</code> (lines 17 and 31). Subsequently, we add Wolverine-specific methods directly on the object referenced by <code>Wolverine</code> (lines 19–29). Note that I used <code>Object.assign</code> simply to avoid defining all the methods on <code>Wolverine</code> one by one, but that’s not necessary.</p>
+<img src="/2021/09/29/x-plore-js-object-creation-patterns/subtypeOLOO.png" class="" title="The init method of the Wolverine prototype object" alt="The init method of the Wolverine object">
+
+<p>There’s quite a lot going on on line 21, so let’s clear this up, too:</p>
+<p>Remember how we invoke the parent constructor on line 15 of the constructor/prototype pattern to add the state it provides to the instances of <code>Wolverine</code>?</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">XMen.call(<span class="built_in">this</span>, <span class="string">&quot;Logan&quot;</span>, [<span class="string">&quot;claws&quot;</span>, <span class="string">&quot;superhuman senses&quot;</span>, <span class="string">&quot;healing factor&quot;</span>]);</span><br></pre></td></tr></table></figure>
+
+<p>That’s what we’re doing on line 21 of this example, as well. However, now <code>XMen</code> is just an object, so what we need to invoke is the <code>init</code> method of the <code>XMen</code> object, which is the one responsible for adding state to the instances of <code>XMen</code>.</p>
+<p>Finally, on line 58, we can see that <code>instanceof</code> cannot be used to determine the type of an instance in this paradigm either. However, a workaround is using <code>Object.getPrototypeOf</code> to at least determine whether an object is the prototype of an instance.</p>
+<img src="/2021/09/29/x-plore-js-object-creation-patterns/OLOOlink.png" class="" title="Use Object.getPrototypeOf to determine the type of an object" alt="Access jean’s prototype to determine its type, indirectly">
+
+<h2 id="4-ES6-Classes"><a href="#4-ES6-Classes" class="headerlink" title="4. ES6 Classes"></a>4. ES6 Classes</h2><p>Classes are little more than syntactic sugar; to their core, they’re just a variation of the pseudo-classical creation pattern. Classes in JavaScript are not even a distinct data type, they’re just function objects. However, they are easier to use as they abstract some of the implementation details of the constructor/prototype pattern away. For example, all we have to do to have a class’s prototype inherit from a superclass’s prototype is use the <code>extends</code> keyword after the class’s name. So much for reassigning the function prototype to an object that inherits from the supertype’s prototype property. Back to our example:</p>
+<script src="//gist.github.com/250220644d163765e7e467c610c007a7.js?file=classXMen.js"></script>
+
+<p>Definitely a lot cleaner. So, a class’s <code>constructor</code> method works like a constructor function (hence the name, I suppose): it’s the one responsible for adding properties to the class instances. The methods we define below it, inside the class body, are instance methods and are defined on the object referenced by the class’s prototype property behind the scenes. For example, <code>attack</code> lives in <code>Wolverine.prototype</code>.</p>
+<p>The <code>extends</code> keyword does what lines 19 and 29 do in the constructor/prototype example. Redefining the constructor property in the subclass’s prototype is no longer necessary — JS deals with that for us.</p>
+<img src="/2021/09/29/x-plore-js-object-creation-patterns/wolverineClass.png" class="" title="Subclass inherits from superclass using the extends keyword in JavaScript" alt="Wolverine’s prototype inherits from XMen’s prototype property">
+
+<p>The <code>super</code> keyword, on line 18, functionally replaces line 15 in the constructor/prototype pattern example. When we invoke <code>super</code> in the <code>constructor</code> method of the child class, it invokes the <code>constructor</code> method of the parent class (<code>XMen</code>) and adds the properties defined in it to the object currently referenced by <code>this</code>: the new instance of <code>Wolverine</code>.</p>
+<p>The methods we define after the <code>constructor</code> special method are defined on the function prototype of each class, in the same way as if we’d done: <code>Wolverine.prototype.attack = function() &#123;...&#125;</code>. This means that all instances of <code>Wolverine</code> and <code>Jean</code> delegate their method calls to their prototype, <code>Wolverine.prototype</code> and <code>Jean.prototype</code>, respectively, instead of carrying around their own copies of each method.</p>
+<h3 id="Compare-and-contrast"><a href="#Compare-and-contrast" class="headerlink" title="Compare and contrast"></a>Compare and contrast</h3><ul>
+<li>Constructors and classes both create objects that trace back to their creators easily using the <code>instanceof</code> operator or by accessing the <code>constructor</code> property on the instances. They’re also memory efficient since their instances inherit (usually all of) the methods from their <code>prototype</code> property.</li>
+<li>Object factories help us create multiple objects of the same type, without being able to determine whether they are of that given type, afterwards. They’re also memory intensive as each of their instances holds its own copies of all the methods.</li>
+<li>The OLOO pattern lies somewhere in between: it’s more effective than object factories since the prototype object that we create is the one that defines all the necessary methods that the instances will then access through prototypal delegation. However, it doesn’t provide a very straightforward way to identify the type of the instances of the prototype object, like classes and constructors do.</li>
+</ul>
+]]></content>
+      <categories>
+        <category>JavaScript</category>
+        <category>Object</category>
+      </categories>
+      <tags>
+        <tag>OOP</tag>
+        <tag>Object</tag>
+        <tag>Prototypal Inheritance</tag>
+      </tags>
+  </entry>
+</search>

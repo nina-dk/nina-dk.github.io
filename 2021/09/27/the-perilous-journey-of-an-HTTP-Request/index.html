@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+  
+
+    <head>
+      <meta charset="utf-8" />
+        
+      <meta name="description" content="Antonina Kallinteri&#39;s tech blog." />
+      
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>The Perilous Journey of an HTTP Request |  antonina kallinteri</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="images/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/style.css">
+
+      <!-- Google fonts -->
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
+      <!-- Font awesome -->
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css"
+      />
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+       
+ 
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
+      />
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+
+      <!-- mermaid -->
+      
+      <style>
+        .swal2-styled.swal2-confirm {
+          font-size: 1.6rem;
+        }
+      </style>
+    <link rel="alternate" href="/atom.xml" title="antonina kallinteri" type="application/atom+xml">
+</head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      <canvas class="fireworks"></canvas>
+      <style>
+        .fireworks {
+          position: fixed;
+          left: 0;
+          top: 0;
+          z-index: 99999;
+          pointer-events: none;
+        }
+      </style>
+      
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-the-perilous-journey-of-an-HTTP-Request"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  The Perilous Journey of an HTTP Request
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/09/27/the-perilous-journey-of-an-HTTP-Request/" class="article-date">
+  <time datetime="2021-09-27T18:34:42.000Z" itemprop="datePublished">2021-09-27</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Networking/">Networking</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> Word count:</span>
+            <span class="post-count">1.3k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> Reading time≈</span>
+            <span class="post-count">7 min</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>This is the story of a lonely HTTP request sailing across the vast Internet seas.</p>
+<img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1194&q=80" class="" title="Boat sailing in the ocean" alt="Photo by Johannes Plenio on Unsplash">
+
+
+<p>It all started when a tired pair of human eyes searched for some peace in cute cat images.</p>
+<span id="more"></span>
+
+<img src="/2021/09/27/the-perilous-journey-of-an-HTTP-Request/search-url.jpg" class="" title="Google Search for “cute cat images”" alt="Google Search for “cute cat images”">
+
+<p>This was the birth of an <em>HTTP request</em>: a text message comprised of some necessary information structured in the way that the <strong>Hypertext Transfer Protocol (HTTP)</strong> commands. Place of birth: the <em>Application Layer</em>.</p>
+<p>It looked something like this:</p>
+<img src="/2021/09/27/the-perilous-journey-of-an-HTTP-Request/curl-request-cut.png" class="" title="HTTP Request in curl" alt="The HTTP Request">
+
+<p>Line 1 is the <em>request line</em>.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET /search?q=cute%20cat%20images HTTP/2</span><br></pre></td></tr></table></figure>
+
+<p>It includes the <em>HTTP Method</em> that will tell the destination host, when it gets there, how it should handle it. This is a <code>GET</code> request: it asks the server to get a resource (the search results page for “cute cat images”) and send them back to the <em>client</em>: our browser.</p>
+<p>It also includes the <em>request-URI</em>, aka the <em>path</em>, that will let the server know which resource it needs to fetch. Our request’s path includes a query string, <code>?q=cute%20cat%20images</code>, which passes some additional information to the server regarding the requested resource.</p>
+<p>Short pause here to discuss the query string — what is this <code>q</code> and why are there some weird characters separating the words we typed in the search box?</p>
+<p><code>q</code> is the name of the input field we filled. We can see that here:</p>
+<img src="/2021/09/27/the-perilous-journey-of-an-HTTP-Request/q-input-field.jpg" class="" title="Google search field name attribute is q" alt="Notice the &#96;name&#96; attribute of the input element">
+
+<p>The “weird” characters, specifically <code>%20</code>, are there because we cannot have spaces in URLs. Therefore we use the <a target="_blank" rel="noopener" href="https://www.rapidtables.com/code/text/ascii-table.html">ASCII hex code</a> for a space (the number <code>20</code>) preceded by <code>%</code>, which is simply a reserved character for entering ASCII codes in the URL to encode characters that are not allowed or are not safe to use.</p>
+<p>Close parenthesis.</p>
+<p>Finally, the HTTP version in use is specified: <code>HTTP/2</code>.</p>
+<p>Below the request line is a necessary header that identifies the receiving host, <code>www.google.com</code>. We will not get into the following two headers.</p>
+<p>Are we all set to travel? By no means. The HTTP request has to undergo a transition before it is ready to embark on its dangerous journey.</p>
+<h2 id="Becoming-a-TCP-segment"><a href="#Becoming-a-TCP-segment" class="headerlink" title="Becoming a TCP segment"></a>Becoming a TCP segment</h2><p>It now enters the <em>Transport Layer</em>. The commander of this layer is usually the <strong>Transmission Control Protocol (TCP)</strong>. TCP takes its job very seriously and wants to make sure that every segment sent is received, and that in the right order.</p>
+<p>Let’s take a break here to briefly discuss how TCP implements these features to ensure a reliable connection between client and server is established.</p>
+<p>Firstly, it follows a process known as the <em>TCP three-way handshake</em>. During the “handshake”, the client and server exchange several messages.</p>
+<ol>
+<li>The client-host sends a segment with the <code>SYN</code> flag set.</li>
+<li>The server responds with a segment with <code>SYN</code> — <code>ACK</code> flags.</li>
+<li>The client sends the final segment with an <code>ACK</code> flag.</li>
+</ol>
+<p>Once the handshake is complete, the HTTP request can be safely transmitted.</p>
+<p>Additionally, in order to make sure that the request actually got to its destination, an <em>acknowledgement</em> message is sent back from the server to our computer’s network interface. If no acknowledgement is received, the segment is retransmitted.</p>
+<p>Finally, if a message is too large to be sent in one go, it is broken down into several segments that each have their own <em>sequence number</em> (situated in a header field, as well). This way, when they arrive at their destination, they will be processed in the correct order.</p>
+<p>The HTTP request is encapsulated in a TCP segment. That segment has a header and a data payload (where the HTTP request now lies).</p>
+<img src="/2021/09/27/the-perilous-journey-of-an-HTTP-Request/tcp-segment2.png" class="" title="A TCP segment encapsulating an HTTP request" alt="The TCP Segment (outlined in black) encapsulates the HTTP Request">
+
+<p>So what’s in the header?</p>
+<p>The Transport Layer is responsible for sending the segment from the requesting application (the web browser, in this case) to the correct process in the Google server (where HTTP requests are handled). It does that through the use of <em>ports</em>: integers in the range of 0–65535 that act as identifiers for a specific application or process in a host.</p>
+<p>The header of our TCP segment will contain (among other information) the <em>source port</em> assigned to that application by our OS and the <em>destination port</em>. The default port for HTTP is 80.</p>
+<p>That way, when the segment arrives at Google’s server it will be directed to port 80, where the server listens for HTTP requests.</p>
+<p>But how will it get to Google’s server in the first place?</p>
+<h2 id="Becoming-an-IP-packet"><a href="#Becoming-an-IP-packet" class="headerlink" title="Becoming an IP packet"></a>Becoming an IP packet</h2><p>Onwards, downwards, to the <em>Internet Layer</em>.</p>
+<p>This is where TCP segments are turned into <em>IP packets</em> by the <strong>Internet Protocol (IP)</strong>.</p>
+<p>The Internet Protocol is the one that makes it possible for a packet to travel from your home to a server on the other side of the world.</p>
+<img src="/2021/09/27/the-perilous-journey-of-an-HTTP-Request/ip-packet.png" class="" title="An IP packet encapsulating a TCP segment" alt="The IP Packet (outlined in blue) encapsulates the TCP Segment">
+
+<p>The TCP segment willingly jumps into the packet. IP seals it and writes the return and mailing addresses on it. The sender’s address or <em>source IP address</em> is the IP address of my computer (I’m the one in need of cute cat pictures). The recipient or <em>destination IP address</em> is the IP address of Google’s server: the unique sequence of numbers that identifies that computer on the internet.</p>
+<p>An IP address might look something like this: <code>207.126.144.100</code>, for IPv4, or this: <code>2a02:687:1211:7500:c8cb:bcf9:7acb:a966</code>, for IPv6.</p>
+<p>(<em>Note:</em> IPv4 and IPv6 are versions of the IP protocol, with IPv6 being the latest version that can accommodate approximately 10²⁷ times more IP addresses than IPv4 does).</p>
+<p>All set; on to the next, final layer.</p>
+<h2 id="Becoming-an-Ethernet-frame"><a href="#Becoming-an-Ethernet-frame" class="headerlink" title="Becoming an Ethernet frame"></a>Becoming an Ethernet frame</h2><p>Our request has officially reached its final preparation stage: the <em>Data Link Layer</em>. The <strong>Ethernet</strong> protocol is in charge of this layer.</p>
+<p>Ethernet wraps the IP packet, containing the TCP segment, containing the HTTP Request, into a <em>frame</em>. On the header of the frame are the <em>source</em> and <em>destination MAC addresses</em>. Except, the destination, in this case, is not yet Google’s server, located miles and miles away, but the next <em>node</em> in line. And by node, I’m referring to the closest networked device that the message will be transferred to first — the next “hop” on the way to Google. Right now, it will probably be my router.</p>
+<img src="/2021/09/27/the-perilous-journey-of-an-HTTP-Request/ethernet-frame.png" class="" title="An Ethernet frame encapsulating an IP packet" alt="The Ethernet Frame (outlined in green) encapsulates the IP Packet">
+
+<p>This is what Ethernet does: it’s responsible for getting the frame to the next “hop” in the network. Once it gets there, the destination MAC address will change to point to the next node. It’s much like how real packages travel across the world: each courier (node) processes the package (frame) and dispatches it to the next courier until it reaches its final destination.</p>
+<img src="https://images.unsplash.com/photo-1508416163602-e4eb39645e86?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2074&q=80" class="" title="Light signals" alt="Photo by Daniel Falcao on Unsplash">
+
+<p>What now? Chaos, cables and wires. The frame takes its final form: it becomes a stream of bits travelling as electrical signals (or light signals or radio waves) towards the destination MAC address — the router that will act as a gateway to the outside world.</p>
+<p>In the same manner, an <em>HTTP Response</em> will be prepared at Google’s servers and travel all the way back to my home, my computer, and ultimately, from my browser to my tired eyes.</p>
+<img src="/2021/09/27/the-perilous-journey-of-an-HTTP-Request/cute-cat-images.jpg" class="" title="Search results for cute cat images" alt="The HTTP Response message interpreted as a web page">
+
+<h4 id="Notes"><a href="#Notes" class="headerlink" title="Notes"></a>Notes</h4><ol>
+<li>For the purposes of this article, the <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Internet_protocol_suite">TCP/IP model</a> is used.</li>
+<li>There is more than one protocol that can be used at each layer. For example, at the Transport Layer, <strong>UDP</strong> might be used by some applications in the place of TCP.</li>
+<li>In the case of HTTPS, which is the one actually used by google.com, the HTTP Request is first encrypted by the <strong>TLS</strong> protocol, so that it can be safely transmitted.</li>
+<li>Unfortunately, there’s a <em>lot</em> more going on than what is mentioned in this article.</li>
+</ol>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>Copyright： </strong>
+          
+          Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source.
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        Share
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2021/09/27/the-perilous-journey-of-an-HTTP-Request/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ethernet/" rel="tag">Ethernet</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTTP/" rel="tag">HTTP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/TCP/" rel="tag">TCP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/TLS/" rel="tag">TLS</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2021/09/29/forEach-method-not-always-best-choice/" class="article-nav-link">
+        <strong class="article-nav-caption">Older</strong>
+        <div class="article-nav-title">
+          
+            Why the forEach JavaScript Method Might not Always be the Best Choice
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2021/09/17/hello-world/" class="article-nav-link">
+        <strong class="article-nav-caption">Newer</strong>
+        <div class="article-nav-title">Hello World</div>
+      </a>
+    
+  </nav>
+
+   
+ 
+   
+<div class="gitalk" id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css">
+
+
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script>
+
+<script type="text/javascript">
+  var gitalk = new Gitalk({
+    clientID: '',
+    clientSecret: '',
+    repo: '',
+    owner: '',
+    admin: [''],
+    // id: location.pathname,      // Ensure uniqueness and length less than 50
+    id: md5(location.pathname),
+    distractionFreeMode: false,  // Facebook-like distraction free mode
+    pagerDirection: 'last'
+  })
+
+  gitalk.render('gitalk-container')
+</script>
+
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2021
+        <i class="ri-heart-fill heart_icon"></i> Antonina Kallinteri
+      </li>
+    </ul>
+    <ul>
+      <li>
+        <a target="_blank" rel="noopener" href="https://github.com/nina-dk"><i class="fab fa-github"></i></a> 
+        <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/antonina-kallinteri-400093219/"><i class="fab fa-linkedin"></i></a> 
+        <a target="_blank" rel="noopener" href="https://www.instagram.com/_ninadk/"><i class="fab fa-instagram"></i></a>
+        <a href="mailto:antwnina.k@gmail.com"><i class="fab fas fa-envelope"></i></a>
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>Visitors:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>Views:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>    
+    </main>
+    <div class="float_btns">
+      <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+    </div>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/android-chrome-512x512.png" alt="antonina kallinteri"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">HOME</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">ABOUT</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">ARCHIVE</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">CATEGORIES</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">TAGS</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-3.6.0.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script>
+
+<script src="/js/clickBoom1.js"></script>
+ 
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+    
+
+  </div>
+</body>
+
+</html>
