@@ -1,24 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Hello World</title>
-    <url>/2021/09/17/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
     <title>Why the forEach JavaScript Method Might not Always be the Best Choice</title>
     <url>/2021/09/29/forEach-method-not-always-best-choice/</url>
     <content><![CDATA[<p>This is a trap I’ve found myself falling into several times.</p>
@@ -54,6 +36,110 @@
       </categories>
       <tags>
         <tag>forEach</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2021/09/17/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>The Perilous Journey of an HTTP Request</title>
+    <url>/2021/09/27/the-perilous-journey-of-an-HTTP-Request/</url>
+    <content><![CDATA[<p>This is the story of a lonely HTTP request sailing across the vast Internet seas.</p>
+<img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1194&q=80" class="" title="Boat sailing in the ocean" alt="Photo by Johannes Plenio on Unsplash">
+
+
+<p>It all started when a tired pair of human eyes searched for some peace in cute cat images.</p>
+<span id="more"></span>
+
+<img src="/2021/09/27/the-perilous-journey-of-an-HTTP-Request/search-url.jpg" class="" title="Google Search for “cute cat images”" alt="Google Search for “cute cat images”">
+
+<p>This was the birth of an <em>HTTP request</em>: a text message comprised of some necessary information structured in the way that the <strong>Hypertext Transfer Protocol (HTTP)</strong> commands. Place of birth: the <em>Application Layer</em>.</p>
+<p>It looked something like this:</p>
+<img src="/2021/09/27/the-perilous-journey-of-an-HTTP-Request/curl-request-cut.png" class="" title="HTTP Request in curl" alt="The HTTP Request">
+
+<p>Line 1 is the <em>request line</em>.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">GET /search?q=cute%20cat%20images HTTP/2</span><br></pre></td></tr></table></figure>
+
+<p>It includes the <em>HTTP Method</em> that will tell the destination host, when it gets there, how it should handle it. This is a <code>GET</code> request: it asks the server to get a resource (the search results page for “cute cat images”) and send them back to the <em>client</em>: our browser.</p>
+<p>It also includes the <em>request-URI</em>, aka the <em>path</em>, that will let the server know which resource it needs to fetch. Our request’s path includes a query string, <code>?q=cute%20cat%20images</code>, which passes some additional information to the server regarding the requested resource.</p>
+<p>Short pause here to discuss the query string — what is this <code>q</code> and why are there some weird characters separating the words we typed in the search box?</p>
+<p><code>q</code> is the name of the input field we filled. We can see that here:</p>
+<img src="/2021/09/27/the-perilous-journey-of-an-HTTP-Request/q-input-field.jpg" class="" title="Google search field name attribute is q" alt="Notice the &#96;name&#96; attribute of the input element">
+
+<p>The “weird” characters, specifically <code>%20</code>, are there because we cannot have spaces in URLs. Therefore we use the <a href="https://www.rapidtables.com/code/text/ascii-table.html">ASCII hex code</a> for a space (the number <code>20</code>) preceded by <code>%</code>, which is simply a reserved character for entering ASCII codes in the URL to encode characters that are not allowed or are not safe to use.</p>
+<p>Close parenthesis.</p>
+<p>Finally, the HTTP version in use is specified: <code>HTTP/2</code>.</p>
+<p>Below the request line is a necessary header that identifies the receiving host, <code>www.google.com</code>. We will not get into the following two headers.</p>
+<p>Are we all set to travel? By no means. The HTTP request has to undergo a transition before it is ready to embark on its dangerous journey.</p>
+<h2 id="Becoming-a-TCP-segment"><a href="#Becoming-a-TCP-segment" class="headerlink" title="Becoming a TCP segment"></a>Becoming a TCP segment</h2><p>It now enters the <em>Transport Layer</em>. The commander of this layer is usually the <strong>Transmission Control Protocol (TCP)</strong>. TCP takes its job very seriously and wants to make sure that every segment sent is received, and that in the right order.</p>
+<p>Let’s take a break here to briefly discuss how TCP implements these features to ensure a reliable connection between client and server is established.</p>
+<p>Firstly, it follows a process known as the <em>TCP three-way handshake</em>. During the “handshake”, the client and server exchange several messages.</p>
+<ol>
+<li>The client-host sends a segment with the <code>SYN</code> flag set.</li>
+<li>The server responds with a segment with <code>SYN</code> — <code>ACK</code> flags.</li>
+<li>The client sends the final segment with an <code>ACK</code> flag.</li>
+</ol>
+<p>Once the handshake is complete, the HTTP request can be safely transmitted.</p>
+<p>Additionally, in order to make sure that the request actually got to its destination, an <em>acknowledgement</em> message is sent back from the server to our computer’s network interface. If no acknowledgement is received, the segment is retransmitted.</p>
+<p>Finally, if a message is too large to be sent in one go, it is broken down into several segments that each have their own <em>sequence number</em> (situated in a header field, as well). This way, when they arrive at their destination, they will be processed in the correct order.</p>
+<p>The HTTP request is encapsulated in a TCP segment. That segment has a header and a data payload (where the HTTP request now lies).</p>
+<img src="/2021/09/27/the-perilous-journey-of-an-HTTP-Request/tcp-segment2.png" class="" title="A TCP segment encapsulating an HTTP request" alt="The TCP Segment (outlined in black) encapsulates the HTTP Request">
+
+<p>So what’s in the header?</p>
+<p>The Transport Layer is responsible for sending the segment from the requesting application (the web browser, in this case) to the correct process in the Google server (where HTTP requests are handled). It does that through the use of <em>ports</em>: integers in the range of 0–65535 that act as identifiers for a specific application or process in a host.</p>
+<p>The header of our TCP segment will contain (among other information) the <em>source port</em> assigned to that application by our OS and the <em>destination port</em>. The default port for HTTP is 80.</p>
+<p>That way, when the segment arrives at Google’s server it will be directed to port 80, where the server listens for HTTP requests.</p>
+<p>But how will it get to Google’s server in the first place?</p>
+<h2 id="Becoming-an-IP-packet"><a href="#Becoming-an-IP-packet" class="headerlink" title="Becoming an IP packet"></a>Becoming an IP packet</h2><p>Onwards, downwards, to the <em>Internet Layer</em>.</p>
+<p>This is where TCP segments are turned into <em>IP packets</em> by the <strong>Internet Protocol (IP)</strong>.</p>
+<p>The Internet Protocol is the one that makes it possible for a packet to travel from your home to a server on the other side of the world.</p>
+<img src="/2021/09/27/the-perilous-journey-of-an-HTTP-Request/ip-packet.png" class="" title="An IP packet encapsulating a TCP segment" alt="The IP Packet (outlined in blue) encapsulates the TCP Segment">
+
+<p>The TCP segment willingly jumps into the packet. IP seals it and writes the return and mailing addresses on it. The sender’s address or <em>source IP address</em> is the IP address of my computer (I’m the one in need of cute cat pictures). The recipient or <em>destination IP address</em> is the IP address of Google’s server: the unique sequence of numbers that identifies that computer on the internet.</p>
+<p>An IP address might look something like this: <code>207.126.144.100</code>, for IPv4, or this: <code>2a02:687:1211:7500:c8cb:bcf9:7acb:a966</code>, for IPv6.</p>
+<p>(<em>Note:</em> IPv4 and IPv6 are versions of the IP protocol, with IPv6 being the latest version that can accommodate approximately 10²⁷ times more IP addresses than IPv4 does).</p>
+<p>All set; on to the next, final layer.</p>
+<h2 id="Becoming-an-Ethernet-frame"><a href="#Becoming-an-Ethernet-frame" class="headerlink" title="Becoming an Ethernet frame"></a>Becoming an Ethernet frame</h2><p>Our request has officially reached its final preparation stage: the <em>Data Link Layer</em>. The <strong>Ethernet</strong> protocol is in charge of this layer.</p>
+<p>Ethernet wraps the IP packet, containing the TCP segment, containing the HTTP Request, into a <em>frame</em>. On the header of the frame are the <em>source</em> and <em>destination MAC addresses</em>. Except, the destination, in this case, is not yet Google’s server, located miles and miles away, but the next <em>node</em> in line. And by node, I’m referring to the closest networked device that the message will be transferred to first — the next “hop” on the way to Google. Right now, it will probably be my router.</p>
+<img src="/2021/09/27/the-perilous-journey-of-an-HTTP-Request/ethernet-frame.png" class="" title="An Ethernet frame encapsulating an IP packet" alt="The Ethernet Frame (outlined in green) encapsulates the IP Packet">
+
+<p>This is what Ethernet does: it’s responsible for getting the frame to the next “hop” in the network. Once it gets there, the destination MAC address will change to point to the next node. It’s much like how real packages travel across the world: each courier (node) processes the package (frame) and dispatches it to the next courier until it reaches its final destination.</p>
+<img src="https://images.unsplash.com/photo-1508416163602-e4eb39645e86?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2074&q=80" class="" title="Light signals" alt="Photo by Daniel Falcao on Unsplash">
+
+<p>What now? Chaos, cables and wires. The frame takes its final form: it becomes a stream of bits travelling as electrical signals (or light signals or radio waves) towards the destination MAC address — the router that will act as a gateway to the outside world.</p>
+<p>In the same manner, an <em>HTTP Response</em> will be prepared at Google’s servers and travel all the way back to my home, my computer, and ultimately, from my browser to my tired eyes.</p>
+<img src="/2021/09/27/the-perilous-journey-of-an-HTTP-Request/cute-cat-images.jpg" class="" title="Search results for cute cat images" alt="The HTTP Response message interpreted as a web page">
+
+<h4 id="Notes"><a href="#Notes" class="headerlink" title="Notes"></a>Notes</h4><ol>
+<li>For the purposes of this article, the <a href="https://en.wikipedia.org/wiki/Internet_protocol_suite">TCP/IP model</a> is used.</li>
+<li>There is more than one protocol that can be used at each layer. For example, at the Transport Layer, <strong>UDP</strong> might be used by some applications in the place of TCP.</li>
+<li>In the case of HTTPS, which is the one actually used by google.com, the HTTP Request is first encrypted by the <strong>TLS</strong> protocol, so that it can be safely transmitted.</li>
+<li>Unfortunately, there’s a <em>lot</em> more going on than what is mentioned in this article.</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Networking</category>
+      </categories>
+      <tags>
+        <tag>HTTP</tag>
+        <tag>TCP</tag>
+        <tag>Ethernet</tag>
+        <tag>TLS</tag>
       </tags>
   </entry>
   <entry>
@@ -141,92 +227,6 @@
         <tag>OOP</tag>
         <tag>Object</tag>
         <tag>Prototypal Inheritance</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>The Perilous Journey of an HTTP Request</title>
-    <url>/2021/09/27/the-perilous-journey-of-an-HTTP-Request/</url>
-    <content><![CDATA[<p>This is the story of a lonely HTTP request sailing across the vast Internet seas.</p>
-<img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1194&q=80" class="" title="Boat sailing in the ocean" alt="Photo by Johannes Plenio on Unsplash">
-
-
-<p>It all started when a tired pair of human eyes searched for some peace in cute cat images.</p>
-<span id="more"></span>
-
-<img src="/2021/09/27/the-perilous-journey-of-an-HTTP-Request/search-url.jpg" class="" title="Google Search for “cute cat images”" alt="Google Search for “cute cat images”">
-
-<p>This was the birth of an <em>HTTP request</em>: a text message comprised of some necessary information structured in the way that the <strong>Hypertext Transfer Protocol (HTTP)</strong> commands. Place of birth: the <em>Application Layer</em>.</p>
-<p>It looked something like this:</p>
-<img src="/2021/09/27/the-perilous-journey-of-an-HTTP-Request/curl-request-cut.png" class="" title="HTTP Request in curl" alt="The HTTP Request">
-
-<p>Line 1 is the <em>request line</em>.</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">GET /search?q=cute%20cat%20images HTTP/2</span><br></pre></td></tr></table></figure>
-
-<p>It includes the <em>HTTP Method</em> that will tell the destination host, when it gets there, how it should handle it. This is a <code>GET</code> request: it asks the server to get a resource (the search results page for “cute cat images”) and send them back to the <em>client</em>: our browser.</p>
-<p>It also includes the <em>request-URI</em>, aka the <em>path</em>, that will let the server know which resource it needs to fetch. Our request’s path includes a query string, <code>?q=cute%20cat%20images</code>, which passes some additional information to the server regarding the requested resource.</p>
-<p>Short pause here to discuss the query string — what is this <code>q</code> and why are there some weird characters separating the words we typed in the search box?</p>
-<p><code>q</code> is the name of the input field we filled. We can see that here:</p>
-<img src="/2021/09/27/the-perilous-journey-of-an-HTTP-Request/q-input-field.jpg" class="" title="Google search field name attribute is q" alt="Notice the &#96;name&#96; attribute of the input element">
-
-<p>The “weird” characters, specifically <code>%20</code>, are there because we cannot have spaces in URLs. Therefore we use the <a href="https://www.rapidtables.com/code/text/ascii-table.html">ASCII hex code</a> for a space (the number <code>20</code>) preceded by <code>%</code>, which is simply a reserved character for entering ASCII codes in the URL to encode characters that are not allowed or are not safe to use.</p>
-<p>Close parenthesis.</p>
-<p>Finally, the HTTP version in use is specified: <code>HTTP/2</code>.</p>
-<p>Below the request line is a necessary header that identifies the receiving host, <code>www.google.com</code>. We will not get into the following two headers.</p>
-<p>Are we all set to travel? By no means. The HTTP request has to undergo a transition before it is ready to embark on its dangerous journey.</p>
-<h2 id="Becoming-a-TCP-segment"><a href="#Becoming-a-TCP-segment" class="headerlink" title="Becoming a TCP segment"></a>Becoming a TCP segment</h2><p>It now enters the <em>Transport Layer</em>. The commander of this layer is usually the <strong>Transmission Control Protocol (TCP)</strong>. TCP takes its job very seriously and wants to make sure that every segment sent is received, and that in the right order.</p>
-<p>Let’s take a break here to briefly discuss how TCP implements these features to ensure a reliable connection between client and server is established.</p>
-<p>Firstly, it follows a process known as the <em>TCP three-way handshake</em>. During the “handshake”, the client and server exchange several messages.</p>
-<ol>
-<li>The client-host sends a segment with the <code>SYN</code> flag set.</li>
-<li>The server responds with a segment with <code>SYN</code> — <code>ACK</code> flags.</li>
-<li>The client sends the final segment with an <code>ACK</code> flag.</li>
-</ol>
-<p>Once the handshake is complete, the HTTP request can be safely transmitted.</p>
-<p>Additionally, in order to make sure that the request actually got to its destination, an <em>acknowledgement</em> message is sent back from the server to our computer’s network interface. If no acknowledgement is received, the segment is retransmitted.</p>
-<p>Finally, if a message is too large to be sent in one go, it is broken down into several segments that each have their own <em>sequence number</em> (situated in a header field, as well). This way, when they arrive at their destination, they will be processed in the correct order.</p>
-<p>The HTTP request is encapsulated in a TCP segment. That segment has a header and a data payload (where the HTTP request now lies).</p>
-<img src="/2021/09/27/the-perilous-journey-of-an-HTTP-Request/tcp-segment2.png" class="" title="A TCP segment encapsulating an HTTP request" alt="The TCP Segment (outlined in black) encapsulates the HTTP Request">
-
-<p>So what’s in the header?</p>
-<p>The Transport Layer is responsible for sending the segment from the requesting application (the web browser, in this case) to the correct process in the Google server (where HTTP requests are handled). It does that through the use of <em>ports</em>: integers in the range of 0–65535 that act as identifiers for a specific application or process in a host.</p>
-<p>The header of our TCP segment will contain (among other information) the <em>source port</em> assigned to that application by our OS and the <em>destination port</em>. The default port for HTTP is 80.</p>
-<p>That way, when the segment arrives at Google’s server it will be directed to port 80, where the server listens for HTTP requests.</p>
-<p>But how will it get to Google’s server in the first place?</p>
-<h2 id="Becoming-an-IP-packet"><a href="#Becoming-an-IP-packet" class="headerlink" title="Becoming an IP packet"></a>Becoming an IP packet</h2><p>Onwards, downwards, to the <em>Internet Layer</em>.</p>
-<p>This is where TCP segments are turned into <em>IP packets</em> by the <strong>Internet Protocol (IP)</strong>.</p>
-<p>The Internet Protocol is the one that makes it possible for a packet to travel from your home to a server on the other side of the world.</p>
-<img src="/2021/09/27/the-perilous-journey-of-an-HTTP-Request/ip-packet.png" class="" title="An IP packet encapsulating a TCP segment" alt="The IP Packet (outlined in blue) encapsulates the TCP Segment">
-
-<p>The TCP segment willingly jumps into the packet. IP seals it and writes the return and mailing addresses on it. The sender’s address or <em>source IP address</em> is the IP address of my computer (I’m the one in need of cute cat pictures). The recipient or <em>destination IP address</em> is the IP address of Google’s server: the unique sequence of numbers that identifies that computer on the internet.</p>
-<p>An IP address might look something like this: <code>207.126.144.100</code>, for IPv4, or this: <code>2a02:687:1211:7500:c8cb:bcf9:7acb:a966</code>, for IPv6.</p>
-<p>(<em>Note:</em> IPv4 and IPv6 are versions of the IP protocol, with IPv6 being the latest version that can accommodate approximately 10²⁷ times more IP addresses than IPv4 does).</p>
-<p>All set; on to the next, final layer.</p>
-<h2 id="Becoming-an-Ethernet-frame"><a href="#Becoming-an-Ethernet-frame" class="headerlink" title="Becoming an Ethernet frame"></a>Becoming an Ethernet frame</h2><p>Our request has officially reached its final preparation stage: the <em>Data Link Layer</em>. The <strong>Ethernet</strong> protocol is in charge of this layer.</p>
-<p>Ethernet wraps the IP packet, containing the TCP segment, containing the HTTP Request, into a <em>frame</em>. On the header of the frame are the <em>source</em> and <em>destination MAC addresses</em>. Except, the destination, in this case, is not yet Google’s server, located miles and miles away, but the next <em>node</em> in line. And by node, I’m referring to the closest networked device that the message will be transferred to first — the next “hop” on the way to Google. Right now, it will probably be my router.</p>
-<img src="/2021/09/27/the-perilous-journey-of-an-HTTP-Request/ethernet-frame.png" class="" title="An Ethernet frame encapsulating an IP packet" alt="The Ethernet Frame (outlined in green) encapsulates the IP Packet">
-
-<p>This is what Ethernet does: it’s responsible for getting the frame to the next “hop” in the network. Once it gets there, the destination MAC address will change to point to the next node. It’s much like how real packages travel across the world: each courier (node) processes the package (frame) and dispatches it to the next courier until it reaches its final destination.</p>
-<img src="https://images.unsplash.com/photo-1508416163602-e4eb39645e86?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2074&q=80" class="" title="Light signals" alt="Photo by Daniel Falcao on Unsplash">
-
-<p>What now? Chaos, cables and wires. The frame takes its final form: it becomes a stream of bits travelling as electrical signals (or light signals or radio waves) towards the destination MAC address — the router that will act as a gateway to the outside world.</p>
-<p>In the same manner, an <em>HTTP Response</em> will be prepared at Google’s servers and travel all the way back to my home, my computer, and ultimately, from my browser to my tired eyes.</p>
-<img src="/2021/09/27/the-perilous-journey-of-an-HTTP-Request/cute-cat-images.jpg" class="" title="Search results for cute cat images" alt="The HTTP Response message interpreted as a web page">
-
-<h4 id="Notes"><a href="#Notes" class="headerlink" title="Notes"></a>Notes</h4><ol>
-<li>For the purposes of this article, the <a href="https://en.wikipedia.org/wiki/Internet_protocol_suite">TCP/IP model</a> is used.</li>
-<li>There is more than one protocol that can be used at each layer. For example, at the Transport Layer, <strong>UDP</strong> might be used by some applications in the place of TCP.</li>
-<li>In the case of HTTPS, which is the one actually used by google.com, the HTTP Request is first encrypted by the <strong>TLS</strong> protocol, so that it can be safely transmitted.</li>
-<li>Unfortunately, there’s a <em>lot</em> more going on than what is mentioned in this article.</li>
-</ol>
-]]></content>
-      <categories>
-        <category>Networking</category>
-      </categories>
-      <tags>
-        <tag>HTTP</tag>
-        <tag>TCP</tag>
-        <tag>Ethernet</tag>
-        <tag>TLS</tag>
       </tags>
   </entry>
 </search>
