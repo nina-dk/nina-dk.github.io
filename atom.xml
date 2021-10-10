@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2021-10-06T18:20:07.761Z</updated>
+  <updated>2021-10-10T09:44:43.694Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -17,11 +17,40 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>The Perilous Journey of an HTTP Request</title>
+    <link href="http://example.com/2021/09/17/the-perilous-journey-of-an-HTTP-Request/"/>
+    <id>http://example.com/2021/09/17/the-perilous-journey-of-an-HTTP-Request/</id>
+    <published>2021-09-17T18:34:42.000Z</published>
+    <updated>2021-10-10T09:44:43.694Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;This is the story of a lonely HTTP request sailing across the vast Internet seas.&lt;/p&gt;
+&lt;img src=&quot;https://images.unsplash.com/photo-1534447677768-be436bb09401?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1194&amp;q=80&quot; class=&quot;&quot; title=&quot;Boat sailing in the ocean&quot; alt=&quot;Photo by Johannes Plenio on Unsplash&quot;&gt;
+
+
+&lt;p&gt;It all started when a tired pair of human eyes searched for some peace in cute cat images.&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Networking" scheme="http://example.com/categories/Networking/"/>
+    
+    
+    <category term="HTTP" scheme="http://example.com/tags/HTTP/"/>
+    
+    <category term="TCP" scheme="http://example.com/tags/TCP/"/>
+    
+    <category term="Ethernet" scheme="http://example.com/tags/Ethernet/"/>
+    
+    <category term="TLS" scheme="http://example.com/tags/TLS/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Let&#39;s X-plore JavaScript&#39;s Object Creation Patterns!</title>
-    <link href="http://example.com/2021/09/29/x-plore-js-object-creation-patterns/"/>
-    <id>http://example.com/2021/09/29/x-plore-js-object-creation-patterns/</id>
-    <published>2021-09-29T17:34:23.000Z</published>
-    <updated>2021-10-06T18:20:07.761Z</updated>
+    <link href="http://example.com/2021/07/16/x-plore-js-object-creation-patterns/"/>
+    <id>http://example.com/2021/07/16/x-plore-js-object-creation-patterns/</id>
+    <published>2021-07-16T17:34:23.000Z</published>
+    <updated>2021-10-10T09:44:08.629Z</updated>
     
     
     <summary type="html">&lt;p&gt;In an attempt to fully absorb the various object creation patterns in JavaScript, in this article, we’re going to explore them through an example.&lt;/p&gt;
@@ -44,10 +73,10 @@
   
   <entry>
     <title>Why the forEach JavaScript Method Might not Always be the Best Choice</title>
-    <link href="http://example.com/2021/09/29/forEach-method-not-always-best-choice/"/>
-    <id>http://example.com/2021/09/29/forEach-method-not-always-best-choice/</id>
-    <published>2021-09-29T17:16:04.000Z</published>
-    <updated>2021-10-06T18:13:13.618Z</updated>
+    <link href="http://example.com/2021/04/20/forEach-method-not-always-best-choice/"/>
+    <id>http://example.com/2021/04/20/forEach-method-not-always-best-choice/</id>
+    <published>2021-04-20T17:16:04.000Z</published>
+    <updated>2021-10-10T09:43:30.281Z</updated>
     
     
     <summary type="html">&lt;p&gt;This is a trap I’ve found myself falling into several times.&lt;/p&gt;
@@ -61,35 +90,6 @@
     
     
     <category term="forEach" scheme="http://example.com/tags/forEach/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>The Perilous Journey of an HTTP Request</title>
-    <link href="http://example.com/2021/09/27/the-perilous-journey-of-an-HTTP-Request/"/>
-    <id>http://example.com/2021/09/27/the-perilous-journey-of-an-HTTP-Request/</id>
-    <published>2021-09-27T18:34:42.000Z</published>
-    <updated>2021-10-08T09:18:30.137Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;This is the story of a lonely HTTP request sailing across the vast Internet seas.&lt;/p&gt;
-&lt;img src=&quot;https://images.unsplash.com/photo-1534447677768-be436bb09401?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1194&amp;q=80&quot; class=&quot;&quot; title=&quot;Boat sailing in the ocean&quot; alt=&quot;Photo by Johannes Plenio on Unsplash&quot;&gt;
-
-
-&lt;p&gt;It all started when a tired pair of human eyes searched for some peace in cute cat images.&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="Networking" scheme="http://example.com/categories/Networking/"/>
-    
-    
-    <category term="HTTP" scheme="http://example.com/tags/HTTP/"/>
-    
-    <category term="TCP" scheme="http://example.com/tags/TCP/"/>
-    
-    <category term="Ethernet" scheme="http://example.com/tags/Ethernet/"/>
-    
-    <category term="TLS" scheme="http://example.com/tags/TLS/"/>
     
   </entry>
   

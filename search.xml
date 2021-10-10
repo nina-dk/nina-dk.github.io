@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>Why the forEach JavaScript Method Might not Always be the Best Choice</title>
-    <url>/2021/09/29/forEach-method-not-always-best-choice/</url>
+    <url>/2021/04/20/forEach-method-not-always-best-choice/</url>
     <content><![CDATA[<p>This is a trap I’ve found myself falling into several times.</p>
 <img src="https://images.unsplash.com/photo-1506702315536-dd8b83e2dcf9?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80" class="">
 
@@ -29,7 +29,7 @@
 
 <p>In the example above, we’re attempting to remove every odd number from the <code>nums</code> array using the <code>Array.prototype.splice()</code> destructive method. However, as we can see from the final return value, <code>nums</code> still contains the odd number <code>7</code>. This happens because while the <code>forEach</code> loop iterates over the array, each element and its corresponding index are passed as arguments to the callback function. When an element is removed, the next element will take up the removed element’s slot and therefore, its index. On the next iteration of <code>forEach</code> the value assigned to <code>index</code> will be incremented as the iteration proceeds with the next element, ignoring the element that was moved back by one slot.</p>
 <p>This is better explained in the flowchart below:</p>
-<img src="/2021/09/29/forEach-method-not-always-best-choice/forEachBug.png" class="">]]></content>
+<img src="/2021/04/20/forEach-method-not-always-best-choice/forEachBug.png" class="">]]></content>
       <categories>
         <category>JavaScript</category>
         <category>Array</category>
@@ -40,7 +40,7 @@
   </entry>
   <entry>
     <title>The Perilous Journey of an HTTP Request</title>
-    <url>/2021/09/27/the-perilous-journey-of-an-HTTP-Request/</url>
+    <url>/2021/09/17/the-perilous-journey-of-an-HTTP-Request/</url>
     <content><![CDATA[<p>This is the story of a lonely HTTP request sailing across the vast Internet seas.</p>
 <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1194&q=80" class="" title="Boat sailing in the ocean" alt="Photo by Johannes Plenio on Unsplash">
 
@@ -48,11 +48,11 @@
 <p>It all started when a tired pair of human eyes searched for some peace in cute cat images.</p>
 <span id="more"></span>
 
-<img src="/2021/09/27/the-perilous-journey-of-an-HTTP-Request/search-url.jpg" class="" title="Google Search for “cute cat images”" alt="Google Search for “cute cat images”">
+<img src="/2021/09/17/the-perilous-journey-of-an-HTTP-Request/search-url.jpg" class="" title="Google Search for “cute cat images”" alt="Google Search for “cute cat images”">
 
 <p>This was the birth of an <em>HTTP request</em>: a text message comprised of some necessary information structured in the way that the <strong>Hypertext Transfer Protocol (HTTP)</strong> commands. Place of birth: the <em>Application Layer</em>.</p>
 <p>It looked something like this:</p>
-<img src="/2021/09/27/the-perilous-journey-of-an-HTTP-Request/curl-request-cut.png" class="" title="HTTP Request in curl" alt="The HTTP Request">
+<img src="/2021/09/17/the-perilous-journey-of-an-HTTP-Request/curl-request-cut.png" class="" title="HTTP Request in curl" alt="The HTTP Request">
 
 <p>Line 1 is the <em>request line</em>.</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">GET /search?q=cute%20cat%20images HTTP/2</span><br></pre></td></tr></table></figure>
@@ -61,7 +61,7 @@
 <p>It also includes the <em>request-URI</em>, aka the <em>path</em>, that will let the server know which resource it needs to fetch. Our request’s path includes a query string, <code>?q=cute%20cat%20images</code>, which passes some additional information to the server regarding the requested resource.</p>
 <p>Short pause here to discuss the query string — what is this <code>q</code> and why are there some weird characters separating the words we typed in the search box?</p>
 <p><code>q</code> is the name of the input field we filled. We can see that here:</p>
-<img src="/2021/09/27/the-perilous-journey-of-an-HTTP-Request/q-input-field.jpg" class="" title="Google search field name attribute is q" alt="Notice the &#96;name&#96; attribute of the input element">
+<img src="/2021/09/17/the-perilous-journey-of-an-HTTP-Request/q-input-field.jpg" class="" title="Google search field name attribute is q" alt="Notice the &#96;name&#96; attribute of the input element">
 
 <p>The “weird” characters, specifically <code>%20</code>, are there because we cannot have spaces in URLs. Therefore we use the <a href="https://www.rapidtables.com/code/text/ascii-table.html">ASCII hex code</a> for a space (the number <code>20</code>) preceded by <code>%</code>, which is simply a reserved character for entering ASCII codes in the URL to encode characters that are not allowed or are not safe to use.</p>
 <p>Close parenthesis.</p>
@@ -80,7 +80,7 @@
 <p>Additionally, in order to make sure that the request actually got to its destination, an <em>acknowledgement</em> message is sent back from the server to our computer’s network interface. If no acknowledgement is received, the segment is retransmitted.</p>
 <p>Finally, if a message is too large to be sent in one go, it is broken down into several segments that each have their own <em>sequence number</em> (situated in a header field, as well). This way, when they arrive at their destination, they will be processed in the correct order.</p>
 <p>The HTTP request is encapsulated in a TCP segment. That segment has a header and a data payload (where the HTTP request now lies).</p>
-<img src="/2021/09/27/the-perilous-journey-of-an-HTTP-Request/tcp-segment2.png" class="" title="A TCP segment encapsulating an HTTP request" alt="The TCP Segment (outlined in black) encapsulates the HTTP Request">
+<img src="/2021/09/17/the-perilous-journey-of-an-HTTP-Request/tcp-segment2.png" class="" title="A TCP segment encapsulating an HTTP request" alt="The TCP Segment (outlined in black) encapsulates the HTTP Request">
 
 <p>So what’s in the header?</p>
 <p>The Transport Layer is responsible for sending the segment from the requesting application (the web browser, in this case) to the correct process in the Google server (where HTTP requests are handled). It does that through the use of <em>ports</em>: integers in the range of 0–65535 that act as identifiers for a specific application or process in a host.</p>
@@ -90,7 +90,7 @@
 <h2 id="Becoming-an-IP-packet"><a href="#Becoming-an-IP-packet" class="headerlink" title="Becoming an IP packet"></a>Becoming an IP packet</h2><p>Onwards, downwards, to the <em>Internet Layer</em>.</p>
 <p>This is where TCP segments are turned into <em>IP packets</em> by the <strong>Internet Protocol (IP)</strong>.</p>
 <p>The Internet Protocol is the one that makes it possible for a packet to travel from your home to a server on the other side of the world.</p>
-<img src="/2021/09/27/the-perilous-journey-of-an-HTTP-Request/ip-packet.png" class="" title="An IP packet encapsulating a TCP segment" alt="The IP Packet (outlined in blue) encapsulates the TCP Segment">
+<img src="/2021/09/17/the-perilous-journey-of-an-HTTP-Request/ip-packet.png" class="" title="An IP packet encapsulating a TCP segment" alt="The IP Packet (outlined in blue) encapsulates the TCP Segment">
 
 <p>The TCP segment willingly jumps into the packet. IP seals it and writes the return and mailing addresses on it. The sender’s address or <em>source IP address</em> is the IP address of my computer (I’m the one in need of cute cat pictures). The recipient or <em>destination IP address</em> is the IP address of Google’s server: the unique sequence of numbers that identifies that computer on the internet.</p>
 <p>An IP address might look something like this: <code>207.126.144.100</code>, for IPv4, or this: <code>2a02:687:1211:7500:c8cb:bcf9:7acb:a966</code>, for IPv6.</p>
@@ -98,14 +98,14 @@
 <p>All set; on to the next, final layer.</p>
 <h2 id="Becoming-an-Ethernet-frame"><a href="#Becoming-an-Ethernet-frame" class="headerlink" title="Becoming an Ethernet frame"></a>Becoming an Ethernet frame</h2><p>Our request has officially reached its final preparation stage: the <em>Data Link Layer</em>. The <strong>Ethernet</strong> protocol is in charge of this layer.</p>
 <p>Ethernet wraps the IP packet, containing the TCP segment, containing the HTTP Request, into a <em>frame</em>. On the header of the frame are the <em>source</em> and <em>destination MAC addresses</em>. Except, the destination, in this case, is not yet Google’s server, located miles and miles away, but the next <em>node</em> in line. And by node, I’m referring to the closest networked device that the message will be transferred to first — the next “hop” on the way to Google. Right now, it will probably be my router.</p>
-<img src="/2021/09/27/the-perilous-journey-of-an-HTTP-Request/ethernet-frame.png" class="" title="An Ethernet frame encapsulating an IP packet" alt="The Ethernet Frame (outlined in green) encapsulates the IP Packet">
+<img src="/2021/09/17/the-perilous-journey-of-an-HTTP-Request/ethernet-frame.png" class="" title="An Ethernet frame encapsulating an IP packet" alt="The Ethernet Frame (outlined in green) encapsulates the IP Packet">
 
 <p>This is what Ethernet does: it’s responsible for getting the frame to the next “hop” in the network. Once it gets there, the destination MAC address will change to point to the next node. It’s much like how real packages travel across the world: each courier (node) processes the package (frame) and dispatches it to the next courier until it reaches its final destination.</p>
 <img src="https://images.unsplash.com/photo-1508416163602-e4eb39645e86?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2074&q=80" class="" title="Light signals" alt="Photo by Daniel Falcao on Unsplash">
 
 <p>What now? Chaos, cables and wires. The frame takes its final form: it becomes a stream of bits travelling as electrical signals (or light signals or radio waves) towards the destination MAC address — the router that will act as a gateway to the outside world.</p>
 <p>In the same manner, an <em>HTTP Response</em> will be prepared at Google’s servers and travel all the way back to my home, my computer, and ultimately, from my browser to my tired eyes.</p>
-<img src="/2021/09/27/the-perilous-journey-of-an-HTTP-Request/cute-cat-images.jpg" class="" title="Search results for cute cat images" alt="The HTTP Response message interpreted as a web page">
+<img src="/2021/09/17/the-perilous-journey-of-an-HTTP-Request/cute-cat-images.jpg" class="" title="Search results for cute cat images" alt="The HTTP Response message interpreted as a web page">
 
 <h4 id="Notes"><a href="#Notes" class="headerlink" title="Notes"></a>Notes</h4><ol>
 <li>For the purposes of this article, the <a href="https://en.wikipedia.org/wiki/Internet_protocol_suite">TCP/IP model</a> is used.</li>
@@ -126,7 +126,7 @@
   </entry>
   <entry>
     <title>Let&#39;s X-plore JavaScript&#39;s Object Creation Patterns!</title>
-    <url>/2021/09/29/x-plore-js-object-creation-patterns/</url>
+    <url>/2021/07/16/x-plore-js-object-creation-patterns/</url>
     <content><![CDATA[<p>In an attempt to fully absorb the various object creation patterns in JavaScript, in this article, we’re going to explore them through an example.</p>
 <img src="https://images.unsplash.com/photo-1612036782617-472725567302?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80" class="">
 
@@ -160,10 +160,10 @@
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//`displayPowers` is defined on XMen.prototype...</span></span><br><span class="line">wolverine.displayPowers();</span><br><span class="line"><span class="comment">//Logan has claws</span></span><br><span class="line"><span class="comment">//Logan has superhuman senses</span></span><br><span class="line"><span class="comment">//Logan has healing factor</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//omitted code</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//...as is `callProfessor`</span></span><br><span class="line">jean.callProfessor(); <span class="comment">// Calling Charles...</span></span><br></pre></td></tr></table></figure>
 
 <p>Notice lines 20 and 30? Before reassigning <code>Wolverine.prototype</code> and <code>Jean.prototype</code> to these new objects that inherit from <code>XMen.prototype</code>, they both pointed to another object that owned a <code>constructor</code> property, which pointed back to the constructor function, <code>Wolverine</code> and <code>Jean</code>, respectively.</p>
-<img src="/2021/09/29/x-plore-js-object-creation-patterns/constructorProp.png" class="" title="Constructor property" alt="The constructor property before and after reassigning the function prototype to a new object">
+<img src="/2021/07/16/x-plore-js-object-creation-patterns/constructorProp.png" class="" title="Constructor property" alt="The constructor property before and after reassigning the function prototype to a new object">
 
 <p>When we reassign <code>Jean.prototype</code> to reference a new object that inherits from <code>XMen.prototype</code> the old object along with its belongings is garbage collected. As a consequence, when we reference <code>constructor</code> on <code>Jean.prototype</code> on line 33 in the picture above, it no longer references the expected function object. In reality, there is no longer a constructor property in the object referenced by <code>Jean.prototype</code>. Therefore, JS looks for it in the object’s prototype, <code>XMen.prototype</code>, which (like any constructor function’s prototype) defines that property. However, <code>XMen.prototype.constructor</code> points to <code>XMen</code>, so that’s what <code>Jean.prototype.constructor</code> also evaluates to (line 34). To fix that, we manually add a <code>constructor</code> property in the new <code>Jean.prototype</code> and have it point to <code>Jean</code>. This way if we later want to find out who created an instance of <code>Jean</code> we can simply access <code>jean.constructor</code> (where <code>jean</code> is an instance of <code>Jean</code>):</p>
-<img src="/2021/09/29/x-plore-js-object-creation-patterns/jeanConstructor.png" class="" title="The constructor of the jean object is Jean" alt="Accessing constructor on jean gives us the constructor function that created it
+<img src="/2021/07/16/x-plore-js-object-creation-patterns/jeanConstructor.png" class="" title="The constructor of the jean object is Jean" alt="Accessing constructor on jean gives us the constructor function that created it
 ">
 
 <h2 id="3-OLOO"><a href="#3-OLOO" class="headerlink" title="3. OLOO"></a>3. OLOO</h2><p>The <em>Objects Linking to Other Objects</em> pattern works in a somewhat different way than the rest of the patterns we’ve seen: it doesn’t use functions; instead, it creates a prototype object from which all objects of a given type will inherit their state and methods. We can differentiate the several instances’ state by using a method usually called <code>init</code>, and passing the values we want as arguments to it. Better explained with an example:</p>
@@ -176,7 +176,7 @@
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="title">init</span>(<span class="params">name, powers</span>)</span> &#123;</span><br><span class="line">  <span class="built_in">this</span>.name = name;</span><br><span class="line">  <span class="built_in">this</span>.powers = powers;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">this</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>There’s this <code>init</code> method defined on <code>XMen</code>, which takes two arguments, <code>name</code> and <code>powers</code>. In the method, we define two properties also called <code>name</code> and <code>powers</code> on the object referenced by <code>this</code> when we invoke <code>init</code>, and assign them the arguments passed in as values. This method is the “simulation” of the constructor function in the pseudo-classical construction pattern. We invoke <code>init</code> on an instance of <code>XMen</code> and endow it with a personalized state.</p>
 <p>Now, if we need to create a sub-type of <code>XMen</code> like we did before, we can create an object that inherits all the methods from <code>XMen</code>, again using <code>Object.create</code> (lines 17 and 31). Subsequently, we add Wolverine-specific methods directly on the object referenced by <code>Wolverine</code> (lines 19–29). Note that I used <code>Object.assign</code> simply to avoid defining all the methods on <code>Wolverine</code> one by one, but that’s not necessary.</p>
-<img src="/2021/09/29/x-plore-js-object-creation-patterns/subtypeOLOO.png" class="" title="The init method of the Wolverine prototype object" alt="The init method of the Wolverine object">
+<img src="/2021/07/16/x-plore-js-object-creation-patterns/subtypeOLOO.png" class="" title="The init method of the Wolverine prototype object" alt="The init method of the Wolverine object">
 
 <p>There’s quite a lot going on on line 21, so let’s clear this up, too:</p>
 <p>Remember how we invoke the parent constructor on line 15 of the constructor/prototype pattern to add the state it provides to the instances of <code>Wolverine</code>?</p>
@@ -184,14 +184,14 @@
 
 <p>That’s what we’re doing on line 21 of this example, as well. However, now <code>XMen</code> is just an object, so what we need to invoke is the <code>init</code> method of the <code>XMen</code> object, which is the one responsible for adding state to the instances of <code>XMen</code>.</p>
 <p>Finally, on line 58, we can see that <code>instanceof</code> cannot be used to determine the type of an instance in this paradigm either. However, a workaround is using <code>Object.getPrototypeOf</code> to at least determine whether an object is the prototype of an instance.</p>
-<img src="/2021/09/29/x-plore-js-object-creation-patterns/OLOOlink.png" class="" title="Use Object.getPrototypeOf to determine the type of an object" alt="Access jean’s prototype to determine its type, indirectly">
+<img src="/2021/07/16/x-plore-js-object-creation-patterns/OLOOlink.png" class="" title="Use Object.getPrototypeOf to determine the type of an object" alt="Access jean’s prototype to determine its type, indirectly">
 
 <h2 id="4-ES6-Classes"><a href="#4-ES6-Classes" class="headerlink" title="4. ES6 Classes"></a>4. ES6 Classes</h2><p>Classes are little more than syntactic sugar; to their core, they’re just a variation of the pseudo-classical creation pattern. Classes in JavaScript are not even a distinct data type, they’re just function objects. However, they are easier to use as they abstract some of the implementation details of the constructor/prototype pattern away. For example, all we have to do to have a class’s prototype inherit from a superclass’s prototype is use the <code>extends</code> keyword after the class’s name. So much for reassigning the function prototype to an object that inherits from the supertype’s prototype property. Back to our example:</p>
 <script src="//gist.github.com/250220644d163765e7e467c610c007a7.js?file=classXMen.js"></script>
 
 <p>Definitely a lot cleaner. So, a class’s <code>constructor</code> method works like a constructor function (hence the name, I suppose): it’s the one responsible for adding properties to the class instances. The methods we define below it, inside the class body, are instance methods and are defined on the object referenced by the class’s prototype property behind the scenes. For example, <code>attack</code> lives in <code>Wolverine.prototype</code>.</p>
 <p>The <code>extends</code> keyword does what lines 19 and 29 do in the constructor/prototype example. Redefining the constructor property in the subclass’s prototype is no longer necessary — JS deals with that for us.</p>
-<img src="/2021/09/29/x-plore-js-object-creation-patterns/wolverineClass.png" class="" title="Subclass inherits from superclass using the extends keyword in JavaScript" alt="Wolverine’s prototype inherits from XMen’s prototype property">
+<img src="/2021/07/16/x-plore-js-object-creation-patterns/wolverineClass.png" class="" title="Subclass inherits from superclass using the extends keyword in JavaScript" alt="Wolverine’s prototype inherits from XMen’s prototype property">
 
 <p>The <code>super</code> keyword, on line 18, functionally replaces line 15 in the constructor/prototype pattern example. When we invoke <code>super</code> in the <code>constructor</code> method of the child class, it invokes the <code>constructor</code> method of the parent class (<code>XMen</code>) and adds the properties defined in it to the object currently referenced by <code>this</code>: the new instance of <code>Wolverine</code>.</p>
 <p>The methods we define after the <code>constructor</code> special method are defined on the function prototype of each class, in the same way as if we’d done: <code>Wolverine.prototype.attack = function() &#123;...&#125;</code>. This means that all instances of <code>Wolverine</code> and <code>Jean</code> delegate their method calls to their prototype, <code>Wolverine.prototype</code> and <code>Jean.prototype</code>, respectively, instead of carrying around their own copies of each method.</p>

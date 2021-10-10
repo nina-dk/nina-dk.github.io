@@ -88,8 +88,8 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2021/09/29/x-plore-js-object-creation-patterns/" class="article-date">
-  <time datetime="2021-09-29T17:34:23.000Z" itemprop="datePublished">2021-09-29</time>
+      <a href="/2021/07/16/x-plore-js-object-creation-patterns/" class="article-date">
+  <time datetime="2021-07-16T17:34:23.000Z" itemprop="datePublished">2021-07-16</time>
 </a> 
   <div class="article-category">
     <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a> / <a class="article-category-link" href="/categories/JavaScript/Object/">Object</a>
@@ -157,10 +157,10 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//`displayPowers` is defined on XMen.prototype...</span></span><br><span class="line">wolverine.displayPowers();</span><br><span class="line"><span class="comment">//Logan has claws</span></span><br><span class="line"><span class="comment">//Logan has superhuman senses</span></span><br><span class="line"><span class="comment">//Logan has healing factor</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//omitted code</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//...as is `callProfessor`</span></span><br><span class="line">jean.callProfessor(); <span class="comment">// Calling Charles...</span></span><br></pre></td></tr></table></figure>
 
 <p>Notice lines 20 and 30? Before reassigning <code>Wolverine.prototype</code> and <code>Jean.prototype</code> to these new objects that inherit from <code>XMen.prototype</code>, they both pointed to another object that owned a <code>constructor</code> property, which pointed back to the constructor function, <code>Wolverine</code> and <code>Jean</code>, respectively.</p>
-<img src="/2021/09/29/x-plore-js-object-creation-patterns/constructorProp.png" class="" title="Constructor property" alt="The constructor property before and after reassigning the function prototype to a new object">
+<img src="/2021/07/16/x-plore-js-object-creation-patterns/constructorProp.png" class="" title="Constructor property" alt="The constructor property before and after reassigning the function prototype to a new object">
 
 <p>When we reassign <code>Jean.prototype</code> to reference a new object that inherits from <code>XMen.prototype</code> the old object along with its belongings is garbage collected. As a consequence, when we reference <code>constructor</code> on <code>Jean.prototype</code> on line 33 in the picture above, it no longer references the expected function object. In reality, there is no longer a constructor property in the object referenced by <code>Jean.prototype</code>. Therefore, JS looks for it in the object’s prototype, <code>XMen.prototype</code>, which (like any constructor function’s prototype) defines that property. However, <code>XMen.prototype.constructor</code> points to <code>XMen</code>, so that’s what <code>Jean.prototype.constructor</code> also evaluates to (line 34). To fix that, we manually add a <code>constructor</code> property in the new <code>Jean.prototype</code> and have it point to <code>Jean</code>. This way if we later want to find out who created an instance of <code>Jean</code> we can simply access <code>jean.constructor</code> (where <code>jean</code> is an instance of <code>Jean</code>):</p>
-<img src="/2021/09/29/x-plore-js-object-creation-patterns/jeanConstructor.png" class="" title="The constructor of the jean object is Jean" alt="Accessing constructor on jean gives us the constructor function that created it
+<img src="/2021/07/16/x-plore-js-object-creation-patterns/jeanConstructor.png" class="" title="The constructor of the jean object is Jean" alt="Accessing constructor on jean gives us the constructor function that created it
 ">
 
 <h2 id="3-OLOO"><a href="#3-OLOO" class="headerlink" title="3. OLOO"></a>3. OLOO</h2><p>The <em>Objects Linking to Other Objects</em> pattern works in a somewhat different way than the rest of the patterns we’ve seen: it doesn’t use functions; instead, it creates a prototype object from which all objects of a given type will inherit their state and methods. We can differentiate the several instances’ state by using a method usually called <code>init</code>, and passing the values we want as arguments to it. Better explained with an example:</p>
@@ -173,7 +173,7 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">init</span>(<span class="params">name, powers</span>)</span> &#123;</span><br><span class="line">  <span class="built_in">this</span>.name = name;</span><br><span class="line">  <span class="built_in">this</span>.powers = powers;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">this</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>There’s this <code>init</code> method defined on <code>XMen</code>, which takes two arguments, <code>name</code> and <code>powers</code>. In the method, we define two properties also called <code>name</code> and <code>powers</code> on the object referenced by <code>this</code> when we invoke <code>init</code>, and assign them the arguments passed in as values. This method is the “simulation” of the constructor function in the pseudo-classical construction pattern. We invoke <code>init</code> on an instance of <code>XMen</code> and endow it with a personalized state.</p>
 <p>Now, if we need to create a sub-type of <code>XMen</code> like we did before, we can create an object that inherits all the methods from <code>XMen</code>, again using <code>Object.create</code> (lines 17 and 31). Subsequently, we add Wolverine-specific methods directly on the object referenced by <code>Wolverine</code> (lines 19–29). Note that I used <code>Object.assign</code> simply to avoid defining all the methods on <code>Wolverine</code> one by one, but that’s not necessary.</p>
-<img src="/2021/09/29/x-plore-js-object-creation-patterns/subtypeOLOO.png" class="" title="The init method of the Wolverine prototype object" alt="The init method of the Wolverine object">
+<img src="/2021/07/16/x-plore-js-object-creation-patterns/subtypeOLOO.png" class="" title="The init method of the Wolverine prototype object" alt="The init method of the Wolverine object">
 
 <p>There’s quite a lot going on on line 21, so let’s clear this up, too:</p>
 <p>Remember how we invoke the parent constructor on line 15 of the constructor/prototype pattern to add the state it provides to the instances of <code>Wolverine</code>?</p>
@@ -181,14 +181,14 @@
 
 <p>That’s what we’re doing on line 21 of this example, as well. However, now <code>XMen</code> is just an object, so what we need to invoke is the <code>init</code> method of the <code>XMen</code> object, which is the one responsible for adding state to the instances of <code>XMen</code>.</p>
 <p>Finally, on line 58, we can see that <code>instanceof</code> cannot be used to determine the type of an instance in this paradigm either. However, a workaround is using <code>Object.getPrototypeOf</code> to at least determine whether an object is the prototype of an instance.</p>
-<img src="/2021/09/29/x-plore-js-object-creation-patterns/OLOOlink.png" class="" title="Use Object.getPrototypeOf to determine the type of an object" alt="Access jean’s prototype to determine its type, indirectly">
+<img src="/2021/07/16/x-plore-js-object-creation-patterns/OLOOlink.png" class="" title="Use Object.getPrototypeOf to determine the type of an object" alt="Access jean’s prototype to determine its type, indirectly">
 
 <h2 id="4-ES6-Classes"><a href="#4-ES6-Classes" class="headerlink" title="4. ES6 Classes"></a>4. ES6 Classes</h2><p>Classes are little more than syntactic sugar; to their core, they’re just a variation of the pseudo-classical creation pattern. Classes in JavaScript are not even a distinct data type, they’re just function objects. However, they are easier to use as they abstract some of the implementation details of the constructor/prototype pattern away. For example, all we have to do to have a class’s prototype inherit from a superclass’s prototype is use the <code>extends</code> keyword after the class’s name. So much for reassigning the function prototype to an object that inherits from the supertype’s prototype property. Back to our example:</p>
 <script src="//gist.github.com/250220644d163765e7e467c610c007a7.js?file=classXMen.js"></script>
 
 <p>Definitely a lot cleaner. So, a class’s <code>constructor</code> method works like a constructor function (hence the name, I suppose): it’s the one responsible for adding properties to the class instances. The methods we define below it, inside the class body, are instance methods and are defined on the object referenced by the class’s prototype property behind the scenes. For example, <code>attack</code> lives in <code>Wolverine.prototype</code>.</p>
 <p>The <code>extends</code> keyword does what lines 19 and 29 do in the constructor/prototype example. Redefining the constructor property in the subclass’s prototype is no longer necessary — JS deals with that for us.</p>
-<img src="/2021/09/29/x-plore-js-object-creation-patterns/wolverineClass.png" class="" title="Subclass inherits from superclass using the extends keyword in JavaScript" alt="Wolverine’s prototype inherits from XMen’s prototype property">
+<img src="/2021/07/16/x-plore-js-object-creation-patterns/wolverineClass.png" class="" title="Subclass inherits from superclass using the extends keyword in JavaScript" alt="Wolverine’s prototype inherits from XMen’s prototype property">
 
 <p>The <code>super</code> keyword, on line 18, functionally replaces line 15 in the constructor/prototype pattern example. When we invoke <code>super</code> in the <code>constructor</code> method of the child class, it invokes the <code>constructor</code> method of the parent class (<code>XMen</code>) and adds the properties defined in it to the object currently referenced by <code>this</code>: the new instance of <code>Wolverine</code>.</p>
 <p>The methods we define after the <code>constructor</code> special method are defined on the function prototype of each class, in the same way as if we’d done: <code>Wolverine.prototype.attack = function() &#123;...&#125;</code>. This means that all instances of <code>Wolverine</code> and <code>Jean</code> delegate their method calls to their prototype, <code>Wolverine.prototype</code> and <code>Jean.prototype</code>, respectively, instead of carrying around their own copies of each method.</p>
@@ -245,7 +245,7 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2021/09/29/x-plore-js-object-creation-patterns/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2021/07/16/x-plore-js-object-creation-patterns/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -258,8 +258,17 @@
    
   <nav class="article-nav">
     
+      <a href="/2021/09/17/the-perilous-journey-of-an-HTTP-Request/" class="article-nav-link">
+        <strong class="article-nav-caption">Older</strong>
+        <div class="article-nav-title">
+          
+            The Perilous Journey of an HTTP Request
+          
+        </div>
+      </a>
     
-      <a href="/2021/09/29/forEach-method-not-always-best-choice/" class="article-nav-link">
+    
+      <a href="/2021/04/20/forEach-method-not-always-best-choice/" class="article-nav-link">
         <strong class="article-nav-caption">Newer</strong>
         <div class="article-nav-title">Why the forEach JavaScript Method Might not Always be the Best Choice</div>
       </a>
@@ -269,33 +278,15 @@
    
  
    
-<div class="gitalk" id="gitalk-container"></div>
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css">
-
-
-<script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script>
-
-
-<script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script>
-
-<script type="text/javascript">
-  var gitalk = new Gitalk({
-    clientID: '',
-    clientSecret: '',
-    repo: 'nina-dk.github.io',
-    owner: '58592210',
-    admin: ['58592210'],
-    // id: location.pathname,      // Ensure uniqueness and length less than 50
-    id: md5(location.pathname),
-    distractionFreeMode: false,  // Facebook-like distraction free mode
-    pagerDirection: 'last'
-  })
-
-  gitalk.render('gitalk-container')
-</script>
-
      
+   <script src="https://utteranc.es/client.js"
+        repo="nina-dk/nina-dk.github.io"
+        issue-term="title"
+        label="💬 comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script> 
 </article>
 
 </section>
