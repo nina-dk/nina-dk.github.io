@@ -13,7 +13,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title>Why the forEach JavaScript Method Might not Always be the Best Choice |  antonina kallinteri</title>
+      <title>New Year&#39;s Drinking (Coding) Challenge |  antonina kallinteri</title>
   <meta name="generator" content="hexo-theme-ayer">
       
       <link rel="shortcut icon" href="/images/favicon.ico" />
@@ -69,7 +69,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-forEach-method-not-always-best-choice"
+  id="post-new-years-drinking-challenge"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -80,7 +80,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  Why the forEach JavaScript Method Might not Always be the Best Choice
+  New Year&#39;s Drinking (Coding) Challenge
 </h1>
  
 
@@ -88,11 +88,11 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2021/04/20/forEach-method-not-always-best-choice/" class="article-date">
-  <time datetime="2021-04-20T17:16:04.000Z" itemprop="datePublished">2021-04-20</time>
+      <a href="/2022/01/02/new-years-drinking-challenge/" class="article-date">
+  <time datetime="2022-01-01T22:00:00.000Z" itemprop="datePublished">2022-01-02</time>
 </a> 
   <div class="article-category">
-    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a> / <a class="article-category-link" href="/categories/JavaScript/Array/">Array</a>
+    <a class="article-category-link" href="/categories/Coding-Challenge/">Coding Challenge</a>
   </div>
   
 <div class="word_count">
@@ -100,7 +100,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">782</span>
+            <span class="post-count">232</span>
         </span>
     </span>
 
@@ -109,7 +109,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">4 min</span>
+            <span class="post-count">1 min</span>
         </span>
     </span>
 </div>
@@ -122,33 +122,20 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <p>This is a trap I’ve found myself falling into several times.</p>
-<img src="https://images.unsplash.com/photo-1506702315536-dd8b83e2dcf9?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80" class="">
+  <img src="/2022/01/02/new-years-drinking-challenge/drinks.jfif" class="" title="drinks" alt="Photo by Billy Huynh on Unsplash">
 
-<span id="more"></span>
 
-<p>Although the <code>Array.prototype.forEach()</code> method seems like a good pick when you want to loop over an array of elements in JavaScript, there are several occasions when a simple <code>for</code> loop or another one of the built-in array methods is what you need.</p>
-<p>Let’s create a simple example of a bad use case of the <code>forEach</code> method:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> array = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line">array.forEach(<span class="function"><span class="params">num</span> =&gt;</span> num += <span class="number">1</span>);</span><br></pre></td></tr></table></figure>
 
-<p><code>forEach</code> accepts a callback function as an argument (<code>num =&gt; num += 1</code>), which in turn has one parameter, <code>num</code>. This parameter will be assigned to the value of the element that’s being iterated over on each iteration of <code>forEach</code>. So, given the array <code>[1, 2, 3]</code>, the numbers <code>1</code>, <code>2</code>, and <code>3</code> will be assigned to the parameter <code>num</code> of the callback on each iteration.</p>
-<p>Now might be a good time to say that in the case of primitive values (such as numbers) JavaScript is “pass-by-value”. This means that when we’re passing the first element of the array, the number <code>1</code> in our example, as an argument to the callback function, what really happens is that a copy of the number <code>1</code> is assigned to the variable <code>num</code>. The element at index 0 of the calling array and the value of the variable <code>num</code> inside the callback function are simply equal; they’re not linked in any way.</p>
-<p>Inside the callback, we’re reassigning the value of <code>num</code> to the result of <code>num + 1</code> (that is we increment its value by <code>1</code>). So, <code>num</code> will now equal <code>2</code> (on the first iteration). However, the values of the elements of the calling array are not going to be affected by this reassignment, because of “pass-by-value” behaviour. The calling array will still contain the elements <code>1</code>, <code>2</code>, and <code>3</code>.</p>
-<p>This is a trap I’ve found myself falling into several times, and by writing it down, I’m attempting to not only share it but also wrap my head around it for good. An experienced developer would know just by looking at this example above that something is going wrong. This example, the way it is right now, has no useful return value (<code>forEach</code> <em>always</em> returns <code>undefined</code>) and no side effects; in other words, it’s doing nothing at all.</p>
-<p>If the goal was to increment every element in the array we could do so by using the <code>Array.prototype.map()</code> method, if we don’t mind having a new array instead of mutating the calling array, or a good old <code>for</code> loop, to mutate the original array, like so:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; array.length; i++) &#123;</span><br><span class="line"> array[i] += <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>Long story short, you cannot change the values of an array’s elements using a <code>forEach</code> loop the way you would with <code>map</code>, for example. If that’s your goal, the simplest way is to go for a <code>for</code> loop. Note, however, that you can mutate an array’s elements if they are objects themselves.</p>
-<p><em>Note:</em> There is, however, a less-common workaround to that issue, using the third parameter of <code>forEach</code> which is assigned to the calling array, like so:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">array.forEach(<span class="function">(<span class="params">_, index, arr</span>) =&gt;</span> arr[index] += <span class="number">1</span>);</span><br></pre></td></tr></table></figure>
-
-<p>Some other cases when a <code>forEach</code> loop is not appropriate are when you intend to exit the looping mechanism after a condition is met or when you want to mutate the calling array while looping through it. In the first case, <code>forEach</code> wouldn’t work at all since there’s no way to exit it, and in the latter, you might get unexpected results if the mutation affects the length property of the calling array.</p>
-<p>For example:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> nums = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">6</span>];</span><br><span class="line">nums.forEach(<span class="function">(<span class="params">num, index</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (num % <span class="number">2</span> === <span class="number">1</span>) &#123;</span><br><span class="line">    nums.splice(index, <span class="number">1</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line">nums; <span class="comment">//returns [ 2, 7, 6 ]</span></span><br></pre></td></tr></table></figure>
-
-<p>In the example above, we’re attempting to remove every odd number from the <code>nums</code> array using the <code>Array.prototype.splice()</code> destructive method. However, as we can see from the final return value, <code>nums</code> still contains the odd number <code>7</code>. This happens because while the <code>forEach</code> loop iterates over the array, each element and its corresponding index are passed as arguments to the callback function. When an element is removed, the next element will take up the removed element’s slot and therefore, its index. On the next iteration of <code>forEach</code> the value assigned to <code>index</code> will be incremented as the iteration proceeds with the next element, ignoring the element that was moved back by one slot.</p>
-<p>This is better explained in the flowchart below:</p>
-<img src="/2021/04/20/forEach-method-not-always-best-choice/forEachBug.png" class=""> 
+<p>7 friends walk into a bar on New Year’s Eve.</p>
+<p>They decide to celebrate with a challenge: <em>they have to drink 24 shots in 42 minutes.</em></p>
+<p>The only rules are the following: they are allowed a six-minute break between each round of 6 shots. They’ll only drink one shot per minute.</p>
+<p>The first and seventh pal managed to drink all of the 24 shots, taking the 6-minute breaks in between.The second and third only managed to drink the last shot of the first round, the first and last shot of the 2nd round, and the last shots of the other two rounds of 6. The fourth guy drank the first and last shots from the 2nd round, and every shot from all other rounds. Lastly, the fifth and sixth fella drank the first shot on each round, as well as the 6th shot on the 2nd round.</p>
+<hr>
+<p>Your task is to create a “drinking timeline” for each participant. The minutes spent drinking should be represented as asterisks, and the minutes they were having a break or failed to drink their shot should be blank.<br>After you do that, print each participant’s “timeline” in the right order.</p>
+<p>The correct output should make you smile!<br>(P.S. If it doesn’t, it’s probably not the correct output.)</p>
+<p>Paste your solutions in the comments below ⬇</p>
+<p>Happy new year!!! 🥂</p>
+ 
       <!-- reward -->
       
     </div>
@@ -196,28 +183,22 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2021/04/20/forEach-method-not-always-best-choice/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2022/01/02/new-years-drinking-challenge/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>  
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/forEach/" rel="tag">forEach</a></li></ul>
-
     </footer>
   </div>
 
    
   <nav class="article-nav">
     
-      <a href="/2021/07/16/x-plore-js-object-creation-patterns/" class="article-nav-link">
-        <strong class="article-nav-caption">Older</strong>
-        <div class="article-nav-title">
-          
-            Let&#39;s X-plore JavaScript&#39;s Object Creation Patterns!
-          
-        </div>
-      </a>
     
+      <a href="/2021/09/17/the-perilous-journey-of-an-HTTP-Request/" class="article-nav-link">
+        <strong class="article-nav-caption">Newer</strong>
+        <div class="article-nav-title">The Perilous Journey of an HTTP Request</div>
+      </a>
     
   </nav>
 

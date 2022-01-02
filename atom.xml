@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2021-10-10T09:44:43.694Z</updated>
+  <updated>2022-01-02T18:46:16.152Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>New Year&#39;s Drinking (Coding) Challenge</title>
+    <link href="http://example.com/2022/01/02/new-years-drinking-challenge/"/>
+    <id>http://example.com/2022/01/02/new-years-drinking-challenge/</id>
+    <published>2022-01-01T22:00:00.000Z</published>
+    <updated>2022-01-02T18:46:16.152Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;img src=&quot;/2022/01/02/new-years-drinking-challenge/drinks.jfif&quot; class=&quot;&quot; title=&quot;drinks&quot; alt=&quot;Photo by Billy Huynh on Unsplash&quot;&gt;
+
+
+
+&lt;p&gt;7</summary>
+        
+      
+    
+    
+    
+    <category term="Coding Challenge" scheme="http://example.com/categories/Coding-Challenge/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>The Perilous Journey of an HTTP Request</title>
@@ -90,33 +117,6 @@
     
     
     <category term="forEach" scheme="http://example.com/tags/forEach/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>New Year&#39;s Drinking (Coding) Challenge</title>
-    <link href="http://example.com/2021/01/02/new-years-drinking-challenge/"/>
-    <id>http://example.com/2021/01/02/new-years-drinking-challenge/</id>
-    <published>2021-01-01T22:00:00.000Z</published>
-    <updated>2022-01-02T16:39:27.980Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;img src=&quot;/2021/01/02/new-years-drinking-challenge/drinks.jfif&quot; class=&quot;&quot; title=&quot;drinks&quot; alt=&quot;Photo by Billy Huynh on Unsplash&quot;&gt;
-
-
-
-&lt;p&gt;7</summary>
-        
-      
-    
-    
-    
-    <category term="Coding Challenge" scheme="http://example.com/categories/Coding-Challenge/"/>
-    
     
   </entry>
   
