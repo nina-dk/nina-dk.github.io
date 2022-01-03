@@ -125,9 +125,9 @@
   <p>This is a trap I’ve found myself falling into several times.</p>
 <img src="https://images.unsplash.com/photo-1506702315536-dd8b83e2dcf9?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80" class="">
 
+<p>Although the <code>Array.prototype.forEach()</code> method seems like a good pick when you want to loop over an array of elements in JavaScript, there are several occasions when a simple <code>for</code> loop or another one of the built-in array methods is what you need.</p>
 <span id="more"></span>
 
-<p>Although the <code>Array.prototype.forEach()</code> method seems like a good pick when you want to loop over an array of elements in JavaScript, there are several occasions when a simple <code>for</code> loop or another one of the built-in array methods is what you need.</p>
 <p>Let’s create a simple example of a bad use case of the <code>forEach</code> method:</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> array = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line">array.forEach(<span class="function"><span class="params">num</span> =&gt;</span> num += <span class="number">1</span>);</span><br></pre></td></tr></table></figure>
 

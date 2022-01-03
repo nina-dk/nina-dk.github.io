@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-01-02T18:46:16.152Z</updated>
+  <updated>2022-01-03T15:20:00.210Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -21,20 +21,15 @@
     <link href="http://example.com/2022/01/02/new-years-drinking-challenge/"/>
     <id>http://example.com/2022/01/02/new-years-drinking-challenge/</id>
     <published>2022-01-01T22:00:00.000Z</published>
-    <updated>2022-01-02T18:46:16.152Z</updated>
+    <updated>2022-01-03T15:20:00.210Z</updated>
     
     
-      
-      
-        
-        
     <summary type="html">&lt;img src=&quot;/2022/01/02/new-years-drinking-challenge/drinks.jfif&quot; class=&quot;&quot; title=&quot;drinks&quot; alt=&quot;Photo by Billy Huynh on Unsplash&quot;&gt;
 
 
 
-&lt;p&gt;7</summary>
-        
-      
+&lt;p&gt;7 friends walk into a bar on New Year’s Eve.&lt;/p&gt;
+&lt;p&gt;They decide to celebrate with a challenge: &lt;em&gt;they have to drink 24 shots in 42 minutes.&lt;/em&gt;&lt;/p&gt;</summary>
     
     
     
@@ -103,11 +98,13 @@
     <link href="http://example.com/2021/04/20/forEach-method-not-always-best-choice/"/>
     <id>http://example.com/2021/04/20/forEach-method-not-always-best-choice/</id>
     <published>2021-04-20T17:16:04.000Z</published>
-    <updated>2021-10-10T09:43:30.281Z</updated>
+    <updated>2022-01-03T15:19:52.540Z</updated>
     
     
     <summary type="html">&lt;p&gt;This is a trap I’ve found myself falling into several times.&lt;/p&gt;
-&lt;img src=&quot;https://images.unsplash.com/photo-1506702315536-dd8b83e2dcf9?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1170&amp;q=80&quot; class=&quot;&quot;&gt;</summary>
+&lt;img src=&quot;https://images.unsplash.com/photo-1506702315536-dd8b83e2dcf9?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1170&amp;q=80&quot; class=&quot;&quot;&gt;
+
+&lt;p&gt;Although the &lt;code&gt;Array.prototype.forEach()&lt;/code&gt; method seems like a good pick when you want to loop over an array of elements in JavaScript, there are several occasions when a simple &lt;code&gt;for&lt;/code&gt; loop or another one of the built-in array methods is what you need.&lt;/p&gt;</summary>
     
     
     
