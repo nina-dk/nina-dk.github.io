@@ -124,6 +124,5 @@ theme: my-ayer
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-  repo: git@github.com:nina-dk/nina-dk.github.io
-  branch: gh-pages
-  message: add medium social icon
+  repo: https://github.com/nina-dk/nina-dk.github.io.git
+  branch: main
