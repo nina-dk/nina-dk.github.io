@@ -1,0 +1,261 @@
+# 侧边栏菜单
+menu:
+  HOME: /
+  ABOUT: /about
+  ARCHIVE: /archives
+  CATEGORIES: /categories
+  TAGS: /tags
+
+# 站点次标题和打字动效
+# https://github.com/mattboldt/typed.js
+subtitle:
+  enable: true # 是否开启动效
+  text: i am a web developer. # 显示的文字
+  text2: welcome to my blog. # 滚动播放，如果不需要可以留空
+  text3: # 最多支持三段文字
+  startDelay: 0 # 延迟时间
+  typeSpeed: 200 # 打字速度
+  loop: true # 是否循环
+  backSpeed: 100 # 回退速度
+  showCursor: true # 是否显示光标
+
+# 网站图标和侧边栏logo
+favicon: /images/favicon.ico
+  # small: images/favicon-16x16.png
+  # medium: images/favicon-32x32.png
+  # apple_touch_icon: images/apple-touch-icon.png
+  # safari_pinned_tab:
+  # android_manifest: images/manifest.json
+  # ms_browserconfig: images/browserconfig.xml
+logo: /images/android-chrome-512x512.png
+
+# 封面配置
+# enable-是否启用封面；path-封面背景图；logo-封面logo
+cover:
+  enable: true
+  path: https://images.unsplash.com/photo-1555099962-4199c345e5dd?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80 # /images/code-picture-faded.jfif # /source/images目录下附送多张美图，可更换
+  logo: false #/images/ayer.svg，如果不要直接设置成false
+
+# 页面顶部进度条
+progressBar: true
+
+# 告示板模块
+broadcast:
+  enable: false # true开启，false关闭
+  type: 2 # 1：自定义输入，2：一言api(https://hitokoto.cn/)
+  text: 一个安静优雅的hexo主题，快速且响应式。 # type为1时有效
+
+# 文章配置
+# 文章太长，截断按钮文字(在需要截断的行增加此标记：<!--more-->)
+excerpt_link: Read More...
+# 如果你嫌每篇文章手动加more标记比较麻烦，又不想在首页全文显示，可以把excerpt_all设置成true，这样首页只会显示文章归档
+excerpt_all: false
+
+# 是否开启代码复制按钮
+copy_btn: true
+# 是否开启文章分享按钮
+share_enable: true
+# 国内的社交平台(If you are not in China, maybe you prefer to set:false)
+share_china: false
+# 文章分享文字
+share_text: Share
+
+# 分页文字
+nav_text:
+  page_prev: Prev
+  page_next: Next
+  post_prev: Older
+  post_next: Newer
+
+# 文章页是否显示目录
+toc: true
+
+# 文章中的图片是否支持点击放大
+image_viewer: true
+
+# https://github.com/willin/hexo-wordcount
+# 是否开启字数统计(关闭请设置enable为false)
+# 也可以单独在md文件里Front-matter设置`no_word_count: true`属性，来自定义关闭字数统计
+word_count:
+  enable: true
+  # 只在文章详情显示(不在首页显示)
+  only_article_visit: true
+
+# 打赏
+# 打赏type设定：0-关闭打赏； 1-文章对应的md文件里有reward:true属性，才有打赏； 2-所有文章均有打赏
+reward_type: 0
+# 打赏wording
+reward_wording: "请我喝杯咖啡吧~"
+# 支付宝二维码图片地址，跟你设置logo的方式一样。比如：/images/alipay.jpg
+alipay: https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/alipay.jpg
+# 微信二维码图片地址
+weixin: https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/wechat.jpg
+
+# 版权声明
+# 版权声明type设定：0-关闭版权声明； 1-文章对应的md文件里有copyright: true属性，才有版权声明； 2-所有文章均有版权声明
+copyright_type: 2
+
+# 是否启用搜索
+# 需要安装hexo-generator-searchdb(https://github.com/theme-next/hexo-generator-searchdb)
+search: true
+
+# RSS订阅(先安装hexo-generator-feed插件，再去博客根目录config进行配置)
+# 不想显示可以直接留空
+rss: /atom.xml
+
+# 是否启用黑夜模式开关
+darkmode: true
+
+# 动态背景效果: 0-关闭，1-动态线条(跟随鼠标)
+canvas_bg: 0
+
+# 自定义鼠标样式，直接替换/images/mouse.cur文件
+mouse:
+  enable: true
+  path: /images/wand.cur
+
+# 鼠标点击效果：0-关闭，1-爱心，2-爆炸烟花，3-粒子烟花
+click_effect: 0
+
+# 页面宽度自定义（不建议修改，可能造成布局混乱），article_width文章宽度，sidebar_width侧边栏宽度
+layout:
+  article_width: 75rem
+  sidebar_width: 12rem
+
+# GitHub Ribbons-封面右上角的forkme，换样式直接在source/images目录下替换forkme图片
+github:
+  # (关闭请设置为false)
+  enable: false
+  url: https://github.com/Shen-Yu/hexo-theme-ayer
+
+# 网易云音乐插件
+music:
+  enable: false
+  # 播放器尺寸类型(1：小尺寸、2：大尺寸)
+  type: 1
+  id: 22707008 # 网易云分享的音乐ID(更换音乐请更改此配置项)
+  autoPlay: true # 是否开启自动播放
+
+# 访问量统计(不蒜子)
+busuanzi:
+  enable: true
+
+# 友盟cnzz统计(url填js代码src链接)
+cnzz:
+  enable: true
+  url: https://s9.cnzz.com/z_stat.php?id=1278069914&web_id=1278069914
+
+# Google Analytics
+google_analytics: ""
+# 百度统计
+baidu_analytics: ""
+
+# Mathjax数学公式
+mathjax: false
+
+# Katex数学公式(allpost设置为false时只有头部设置math:true的文章才开启)
+# 需要更换hexo渲染器，npm un hexo-renderer-marked -S && npm i hexo-renderer-markdown-it-katex -S
+katex:
+  enable: false # true
+  allpost: true
+  copy_tex: false
+
+# mermaid流程图 三个选项缺一不可(https://mermaid-js.github.io/mermaid/)
+mermaid:
+  enable: false
+  cdn: https://cdn.jsdelivr.net/npm/mermaid@8.9.2/dist/mermaid.min.js
+  theme: forest
+
+# 网站成立年份(默认为 2019，若填入年份小于当前年份，则显示为 2018-2019 类似的格式)
+since: 2021
+
+# ICP备案信息尾部显示
+icp:
+  enable: false
+  url: "http://www.beian.miit.gov.cn/" # 备案链接
+  text: "浙ICP备88888888" # 备案信息
+# 公安备案信息尾部显示
+gongan:
+  enable: false
+  img: /images/beian.png #公安备案图片
+  url: "http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=01234567890123" #公安备案链接
+  text: "浙公网安备01234567890123号" #公安备案信息
+
+# 友情链接
+friends_link:
+  Ayer主题: #网站名称
+    #网站地址
+    url: https://github.com/Shen-Yu/hexo-theme-ayer
+    #网站图片(可忽略不写)
+    img: /images/ayer.png
+  GitHub:
+    url: https://github.com/Shen-Yu
+    img: https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/github.png
+  码云:
+    url: https://gitee.com/shen-yu
+    img: https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/gitee.png
+  Hexo官网:
+    url: https://hexo.io
+    img: https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/hexo.png
+  Hexo图表插件:
+    url: https://github.com/Shen-Yu/hexo-tag-chart
+    img: https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/hexo-tag-chart.png
+
+# 评论：1、Valine(推荐)；2、Gitalk；3、Twikoo; 4.MiniValine
+
+# 1、Valine[一款快速、简洁且高效的无后端评论系统](https://github.com/xCss/Valine)
+# 启用Valine必须先创建leancloud应用， 获取 id|key 填入即可
+leancloud:
+  enable: false
+  app_id: #
+  app_key: #
+# Valine配置
+valine:
+  enable: true # 是否启用
+  avatar: monsterid # 头像样式(https://valine.js.org/avatar.html)
+  placeholder: 给我的文章加点评论吧~ # placeholder
+
+# 2、Gitalk(https://github.com/gitalk/gitalk)
+gitalk:
+  enable: false # true
+  clientID: #client ID
+  clientSecret: #client secret
+  repo:  # Repository name
+  owner: # GitHub ID
+  admin: # GitHub ID
+
+# 3、Twikoo(https://github.com/imaegoo/twikoo)
+twikoo:
+  enable: false
+  envId: #
+
+# 4、MiniValine
+# See: https://github.com/MiniValine/MiniValine
+minivaline:
+  enable: false
+  # 更多选项 https://minivaline.js.org/docs/cn/#/Options 按照yml格式继续填写即可 （除了 [el] 选项）
+  # emoticonUrl 等列表选项 可参考 https://github.com/MiniValine/hexo-next-minivaline
+  # 下面是一个例子：
+  serverURL: https://minivaline.your-domain.com
+
+# 5 Utterances
+utterances:
+  enable: true
+  repo: nina-dk/nina-dk.github.io
+  issue_term: title
+  label: 💬 comment
+  theme: github-light
+
+# 首页广告配置
+# 可以根据需要自行增加ad_3，ad_4...，留空则不显示，建议图片和url不要带ad等关键词，否则可能会被adblock等插件屏蔽
+ads:
+  ad_1:
+    title: 
+    img: 
+    url:
+    width:
+
+# 网站开启加密访问，密码可设置任何字符
+lock:
+  enable: false
+  password: 123456
