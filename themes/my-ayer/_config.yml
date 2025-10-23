@@ -10,8 +10,7 @@ menu:
 # https://github.com/mattboldt/typed.js
 subtitle:
   enable: true # 是否开启动效
-  text: i am a web developer. # 显示的文字
-  text2: welcome to my blog. # 滚动播放，如果不需要可以留空
+  text: welcome to my blog. # 滚动播放，如果不需要可以留空
   text3: # 最多支持三段文字
   startDelay: 0 # 延迟时间
   typeSpeed: 200 # 打字速度
