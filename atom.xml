@@ -3,11 +3,11 @@
   <title>antonina kallinteri</title>
   
   
-  <link href="http://example.com/atom.xml" rel="self"/>
+  <link href="https://nina-dk.github.io/atom.xml" rel="self"/>
   
-  <link href="http://example.com/"/>
+  <link href="https://nina-dk.github.io/"/>
   <updated>2025-10-25T12:20:51.447Z</updated>
-  <id>http://example.com/</id>
+  <id>https://nina-dk.github.io/</id>
   
   <author>
     <name>Antonina Kallinteri</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>The Perilous Journey of an HTTP Request</title>
-    <link href="http://example.com/2021/09/17/the-perilous-journey-of-an-HTTP-Request/"/>
-    <id>http://example.com/2021/09/17/the-perilous-journey-of-an-HTTP-Request/</id>
+    <link href="https://nina-dk.github.io/2021/09/17/the-perilous-journey-of-an-HTTP-Request/"/>
+    <id>https://nina-dk.github.io/2021/09/17/the-perilous-journey-of-an-HTTP-Request/</id>
     <published>2021-09-17T18:34:42.000Z</published>
     <updated>2025-10-25T12:20:51.447Z</updated>
     
@@ -32,23 +32,23 @@
     
     
     
-    <category term="Networking" scheme="http://example.com/categories/Networking/"/>
+    <category term="Networking" scheme="https://nina-dk.github.io/categories/Networking/"/>
     
     
-    <category term="HTTP" scheme="http://example.com/tags/HTTP/"/>
+    <category term="HTTP" scheme="https://nina-dk.github.io/tags/HTTP/"/>
     
-    <category term="TCP" scheme="http://example.com/tags/TCP/"/>
+    <category term="TCP" scheme="https://nina-dk.github.io/tags/TCP/"/>
     
-    <category term="Ethernet" scheme="http://example.com/tags/Ethernet/"/>
+    <category term="Ethernet" scheme="https://nina-dk.github.io/tags/Ethernet/"/>
     
-    <category term="TLS" scheme="http://example.com/tags/TLS/"/>
+    <category term="TLS" scheme="https://nina-dk.github.io/tags/TLS/"/>
     
   </entry>
   
   <entry>
     <title>Let&#39;s X-plore JavaScript&#39;s Object Creation Patterns!</title>
-    <link href="http://example.com/2021/07/16/x-plore-js-object-creation-patterns/"/>
-    <id>http://example.com/2021/07/16/x-plore-js-object-creation-patterns/</id>
+    <link href="https://nina-dk.github.io/2021/07/16/x-plore-js-object-creation-patterns/"/>
+    <id>https://nina-dk.github.io/2021/07/16/x-plore-js-object-creation-patterns/</id>
     <published>2021-07-16T17:34:23.000Z</published>
     <updated>2025-10-25T12:20:51.464Z</updated>
     
@@ -58,23 +58,23 @@
     
     
     
-    <category term="JavaScript" scheme="http://example.com/categories/JavaScript/"/>
+    <category term="JavaScript" scheme="https://nina-dk.github.io/categories/JavaScript/"/>
     
-    <category term="Object" scheme="http://example.com/categories/JavaScript/Object/"/>
+    <category term="Object" scheme="https://nina-dk.github.io/categories/JavaScript/Object/"/>
     
     
-    <category term="OOP" scheme="http://example.com/tags/OOP/"/>
+    <category term="OOP" scheme="https://nina-dk.github.io/tags/OOP/"/>
     
-    <category term="Object" scheme="http://example.com/tags/Object/"/>
+    <category term="Object" scheme="https://nina-dk.github.io/tags/Object/"/>
     
-    <category term="Prototypal Inheritance" scheme="http://example.com/tags/Prototypal-Inheritance/"/>
+    <category term="Prototypal Inheritance" scheme="https://nina-dk.github.io/tags/Prototypal-Inheritance/"/>
     
   </entry>
   
   <entry>
     <title>Why the forEach JavaScript Method Might not Always be the Best Choice</title>
-    <link href="http://example.com/2021/04/20/forEach-method-not-always-best-choice/"/>
-    <id>http://example.com/2021/04/20/forEach-method-not-always-best-choice/</id>
+    <link href="https://nina-dk.github.io/2021/04/20/forEach-method-not-always-best-choice/"/>
+    <id>https://nina-dk.github.io/2021/04/20/forEach-method-not-always-best-choice/</id>
     <published>2021-04-20T17:16:04.000Z</published>
     <updated>2025-10-25T12:20:51.446Z</updated>
     
@@ -86,12 +86,12 @@
     
     
     
-    <category term="JavaScript" scheme="http://example.com/categories/JavaScript/"/>
+    <category term="JavaScript" scheme="https://nina-dk.github.io/categories/JavaScript/"/>
     
-    <category term="Array" scheme="http://example.com/categories/JavaScript/Array/"/>
+    <category term="Array" scheme="https://nina-dk.github.io/categories/JavaScript/Array/"/>
     
     
-    <category term="forEach" scheme="http://example.com/tags/forEach/"/>
+    <category term="forEach" scheme="https://nina-dk.github.io/tags/forEach/"/>
     
   </entry>
   
