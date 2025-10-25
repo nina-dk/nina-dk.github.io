@@ -126,4 +126,4 @@ deploy:
   type: git
   repo: git@github.com:nina-dk/nina-dk.github.io
   branch: gh-pages
-  message: add medium social icon
+  message: deploy to gh pages
