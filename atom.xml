@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>antonina kallinteri</title>
+  
+  
+  <link href="http://example.com/atom.xml" rel="self"/>
+  
+  <link href="http://example.com/"/>
+  <updated>2025-10-25T12:20:51.447Z</updated>
+  <id>http://example.com/</id>
+  
+  <author>
+    <name>Antonina Kallinteri</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>The Perilous Journey of an HTTP Request</title>
+    <link href="http://example.com/2021/09/17/the-perilous-journey-of-an-HTTP-Request/"/>
+    <id>http://example.com/2021/09/17/the-perilous-journey-of-an-HTTP-Request/</id>
+    <published>2021-09-17T18:34:42.000Z</published>
+    <updated>2025-10-25T12:20:51.447Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;This is the story of a lonely HTTP request sailing across the vast Internet seas.&lt;/p&gt;
+&lt;img src=&quot;https://images.unsplash.com/photo-1534447677768-be436bb09401?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1194&amp;q=80&quot; class=&quot;&quot; title=&quot;Boat sailing in the ocean&quot; alt=&quot;Photo by Johannes Plenio on Unsplash&quot;&gt;
+
+
+&lt;p&gt;It all started when a tired pair of human eyes searched for some peace in cute cat images.&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Networking" scheme="http://example.com/categories/Networking/"/>
+    
+    
+    <category term="HTTP" scheme="http://example.com/tags/HTTP/"/>
+    
+    <category term="TCP" scheme="http://example.com/tags/TCP/"/>
+    
+    <category term="Ethernet" scheme="http://example.com/tags/Ethernet/"/>
+    
+    <category term="TLS" scheme="http://example.com/tags/TLS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Let&#39;s X-plore JavaScript&#39;s Object Creation Patterns!</title>
+    <link href="http://example.com/2021/07/16/x-plore-js-object-creation-patterns/"/>
+    <id>http://example.com/2021/07/16/x-plore-js-object-creation-patterns/</id>
+    <published>2021-07-16T17:34:23.000Z</published>
+    <updated>2025-10-25T12:20:51.464Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;In an attempt to fully absorb the various object creation patterns in JavaScript, in this article, we’re going to explore them through an example.&lt;/p&gt;
+&lt;img src=&quot;https://images.unsplash.com/photo-1612036782617-472725567302?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1170&amp;q=80&quot; class=&quot;&quot;&gt;</summary>
+    
+    
+    
+    <category term="JavaScript" scheme="http://example.com/categories/JavaScript/"/>
+    
+    <category term="Object" scheme="http://example.com/categories/JavaScript/Object/"/>
+    
+    
+    <category term="OOP" scheme="http://example.com/tags/OOP/"/>
+    
+    <category term="Object" scheme="http://example.com/tags/Object/"/>
+    
+    <category term="Prototypal Inheritance" scheme="http://example.com/tags/Prototypal-Inheritance/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Why the forEach JavaScript Method Might not Always be the Best Choice</title>
+    <link href="http://example.com/2021/04/20/forEach-method-not-always-best-choice/"/>
+    <id>http://example.com/2021/04/20/forEach-method-not-always-best-choice/</id>
+    <published>2021-04-20T17:16:04.000Z</published>
+    <updated>2025-10-25T12:20:51.446Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;This is a trap I’ve found myself falling into several times.&lt;/p&gt;
+&lt;img src=&quot;https://images.unsplash.com/photo-1506702315536-dd8b83e2dcf9?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1170&amp;q=80&quot; class=&quot;&quot;&gt;
+
+&lt;p&gt;Although the &lt;code&gt;Array.prototype.forEach()&lt;/code&gt; method seems like a good pick when you want to loop over an array of elements in JavaScript, there are several occasions when a simple &lt;code&gt;for&lt;/code&gt; loop or another one of the built-in array methods is what you need.&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="JavaScript" scheme="http://example.com/categories/JavaScript/"/>
+    
+    <category term="Array" scheme="http://example.com/categories/JavaScript/Array/"/>
+    
+    
+    <category term="forEach" scheme="http://example.com/tags/forEach/"/>
+    
+  </entry>
+  
+</feed>
