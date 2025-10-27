@@ -125,5 +125,4 @@ theme: my-ayer
 deploy:
   type: git
   repo: git@github.com:nina-dk/nina-dk.github.io
-  branch: gh-pages
-  message: deploy to gh pages
+  branch: main
