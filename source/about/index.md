@@ -5,12 +5,13 @@ date: 2021-09-27 21:17:58
 
 Welcome to my blog!
 
-My name is Antonina Kallinteri and I am a Full-stack web developer and Teaching assistant.
-I have experience building end-to-end web applications using NodeJS, ExpressJS, React, and PostgreSQL.
+Hi, I’m Antonina Kallinteri — a Full-Stack Web Developer and Teaching Assistant with a passion for creating clean, scalable web applications.
 
-I currently work as a TA at a US-based [online school](https://launchschool.com) where I study & teach software engineering fundamentals... and loving it!
+I have hands-on experience building end-to-end solutions using Node.js, Express.js, React, and PostgreSQL.
 
-I'm also actively looking for job opportunities that will challenge and expand my technical skillset. I would love to join a company where I can learn alongside other skilled and intelligent developers, contributing to projects in a collaborative environment that values knowledge sharing, innovation, and continuous growth.
+Currently, I work as a Teaching Assistant at [Launch School](https://launchschool.com), where I teach software engineering fundamentals — and I’m absolutely loving it.
+
+I’m also actively seeking new opportunities that challenge me to grow as a developer. I’m eager to join a team of talented engineers where I can contribute to meaningful projects, collaborate on innovative solutions, and continue learning in an environment that values curiosity, knowledge sharing, and technical excellence.
 
 Technologies/languages on my "todo" list:
 
